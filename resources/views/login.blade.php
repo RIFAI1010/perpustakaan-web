@@ -20,10 +20,10 @@
                     <div class="col-md-8 col-lg-6 col-xxl-3">
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                                <a href="./dashboard" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <h2>Perpustakaan</h2>
                                 </a>
-                                <p class="text-center">Your Social Campaigns</p>
+                                <p class="text-center">pinjam beli buku</p>
                                 <form>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Username</label>
