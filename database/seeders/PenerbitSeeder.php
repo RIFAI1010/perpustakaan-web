@@ -16,8 +16,8 @@ class PenerbitSeeder extends Seeder
     public function run(): void
     {
         DB::table('penerbits')->insert([
-            'id' => 'pppppppp-pppp-pppp-pppp-pppppppppbit',
             'name' => 'Rumah Buku',
+            'slug' => 'rumah_buku',
         ]);
     }
 }

@@ -14,7 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bukus', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
+            $table->string('slug')->unique();
             $table->string('image');
             $table->string('title');
             $table->longText('deskripsi');
@@ -27,13 +28,15 @@ return new class extends Migration
             $table->enum('tipe', ['E-Book', 'Buku Cetak']);
             $table->boolean('status_ketersediaan');
             $table->boolean('status_approval')->nullable();
-
-            $table->foreignUuid('id_penerbit')->references('id')->on('penerbits');
-            $table->foreignUuid('id_peminjam')->nullable()->references('id')->on('users');
-
+            $table->unsignedBigInteger('penerbit_id');
+            $table->unsignedBigInteger('peminjam_id')->nullable();
             $table->date('reserve_date')->nullable();
             $table->date('due_date')->nullable();
             $table->timestamps();
+
+            $table->foreign('penerbit_id')->references('id')->on('penerbits');
+            $table->foreign('peminjam_id')->references('id')->on('users');
+
         });
     }
 

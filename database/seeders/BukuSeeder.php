@@ -15,9 +15,9 @@ class BukuSeeder extends Seeder
     public function run(): void
     {
         DB::table('bukus')->insert([
-            'id' => 'pppppppp-pppp-pppp-pppp-pppppppppuku',
             'image' => 'kocick.jpg',
             'title' => 'Cara Membesarkan Otak Agar Supabase Menjadi Linear Algebra',
+            'slug' => 'cara_membesarkan_otak_agar_supabase_menjadi_linear_algebra',
             'deskripsi' => 'Bersiwak bagus untuk membersihkan gigi',
             'isbn' => '6969696969',
             'page_count' => 123,
@@ -27,10 +27,10 @@ class BukuSeeder extends Seeder
             'published_date' => now(),
             'tipe' => 'E-Book',
             'status_ketersediaan' => 1,
-
-            'id_penerbit' => 'pppppppp-pppp-pppp-pppp-pppppppppbit',
             'reserve_date' => now(),
             'due_date' => now(),
+
+            'penerbit_id' => 1,
         ]);
     }
 }
