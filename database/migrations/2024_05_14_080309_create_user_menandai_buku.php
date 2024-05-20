@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_menandai_buku', function (Blueprint $table) {
-            $table->foreignUuid('id_user')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignUuid('id_buku')->references('id')->on('bukus')->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('buku_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('buku_id')->references('id')->on('bukus');
         });
     }
 

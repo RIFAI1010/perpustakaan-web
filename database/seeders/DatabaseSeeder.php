@@ -24,12 +24,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('penulis_buku')->insert([
-            'id_penulis' => 'pppppppp-pppp-pppp-pppp-ppppppppplis',
-            'id_buku' => 'pppppppp-pppp-pppp-pppp-pppppppppuku',
+            'penulis_id' => 1,
+            'buku_id' => 1,
         ]);
+        
         DB::table('category_buku')->insert([
-            'id_category' => 'pppppppp-pppp-pppp-pppp-pppppppppris',
-            'id_buku' => 'pppppppp-pppp-pppp-pppp-pppppppppuku',
+            'category_id' => 1,
+            'buku_id' => 1,
         ]);
     }
 }

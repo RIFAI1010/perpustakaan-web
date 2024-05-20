@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('laporan_transaksi_peminjaman_buku', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('id_user')->references('id')->on('users');
-            $table->foreignUuid('id_buku')->references('id')->on('bukus');
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('buku_id');
             $table->date('reserve_date');
             $table->date('due_date');
             $table->date('return_date');
@@ -22,6 +22,9 @@ return new class extends Migration
             $table->unsignedInteger('denda')->nullable();
             $table->string('foto_pengembalian')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('buku_id')->references('id')->on('bukus');
         });
     }
 

@@ -12,11 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_merating_buku', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('id_user')->references('id')->on('users');
-            $table->foreignUuid('id_buku')->references('id')->on('bukus');
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('buku_id');
             $table->unsignedDecimal('rate', 1, 1);
             $table->longText('comment');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('buku_id')->references('id')->on('bukus');
         });
     }
 
