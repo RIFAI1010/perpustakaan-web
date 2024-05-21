@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'id' => str::uuid(),
             'image' => 'kocak.png',
             'first_name' => fake()->firstNameMale(),
             'last_name' => fake()->lastName(),
+            'username' => 'opalkerenbat',
             'email' => fake()->unique()->safeEmail(),
             'phone_number' => '087772986753',
             'password' => Hash::make('password'),
