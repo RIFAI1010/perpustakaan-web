@@ -7,59 +7,12 @@
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
-        .scrollable-card {
-            overflow-x: auto;
-            white-space: nowrap;
-            -ms-overflow-style: none;
-            /* Internet Explorer 10+ */
-            scrollbar-width: none;
-            /* Firefox */
-            margin-bottom: 20px;
-            scroll-behavior: smooth;
+        
 
-
-        }
-
-        .scrollable-card .btn {
-            display: inline-block;
-            margin: 0 4px;
-
-        }
-
-        .scrollable-cover {
-            overflow-x: auto;
-            white-space: nowrap;
-            --sb-track-color: #00000000;
-            --sb-thumb-color: #cecece;
-            --sb-size: 6px;
-            display: flex;
-            padding-bottom: 5px;
-            scroll-behavior: smooth;
-
-        }
-
-        .scrollable-cover::-webkit-scrollbar {
-            height: var(--sb-size)
-        }
-
-        .scrollable-cover::-webkit-scrollbar-track {
-            background: var(--sb-track-color);
-            border-radius: 4px;
-        }
-
-        .scrollable-cover::-webkit-scrollbar-thumb {
-            background: var(--sb-thumb-color);
-            border-radius: 4px;
-
-        }
-
-        @supports not selector(::-webkit-scrollbar) {
-            .scrollable-cover {
-                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-            }
-        }
+        
     </style>
 </head>
 
@@ -175,15 +128,15 @@
                                         {{-- beetwen hole --}}
                                     </div>
                                 </div>
-                                <div class="scrollable-card" id="scrollable-card">
+                                <div class="scrollable-y mb-9 pb-2" id="scrollable-card">
                                     <button type="button" class="btn btn-primary">Button 1</button>
-                                    @for ($i = 1; $i <= 15; $i++) <button type="button" class="btn btn-outline-primary">
+                                    @for ($i = 1; $i <= 15; $i++) <button type="button" class="btn btn-outline-primary mx-2 d-inline-block">
                                         Button 2</button>
                                         @endfor
                                 </div>
-                                <div class="scrollable-cover" id="scrollable-cover">
+                                <div class="scrollable-y pb-2 d-flex" id="scrollable-cover">
                                     @for ($i = 1; $i <= 8; $i++) <div class="col-sm-6 col-md-2">
-                                        <div class="card overflow-hidden rounded-2" style="margin: 0 15px">
+                                        <div class="card overflow-hidden rounded-2 mx-3">
                                             <div class="position-relative">
                                                 <a href="javascript:void(0)"><img src="../assets/images/products/s4.jpg"
                                                         class="card-img-top rounded-0" alt="..."></a>
