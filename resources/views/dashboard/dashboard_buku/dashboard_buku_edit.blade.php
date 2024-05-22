@@ -43,12 +43,12 @@
           <div class="mb-3">
             <label for="penulis_id" class="form-label">Penulis</label>
             <select class="form-select @error('penulis_id') is-invalid @enderror" aria-label="Select penulis" id="penulis_id" name="penulis_id" value="{{ old('penulis_id') }}" required @required(true)>
-              <option>--Pilih penulis--</option>
+              <option value="">--Pilih penulis--</option>
               @foreach ($penuliss as $penulis)
-                <option value="{{ $penulis->id }}" {{ (old('penulis_id') ?? ($buku->penulis()->get()[0]->id)) == ($buku->penulis()->get()[0]->id) ? 'selected' : '' }}>{{ $penulis->nama }}</option>
+                <option value="{{ $penulis->id }}" {{ (old('penulis_id') ?? ($buku->penulis()->get()[0]->id)) == $penulis->id ? 'selected' : '' }}>{{ $penulis->nama }}</option>
               @endforeach
             </select>
-            @error('penerbit_id')
+            @error('penulis_id')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>
@@ -57,7 +57,7 @@
           <div class="mb-3">
             <label for="penerbit_id" class="form-label">Penerbit</label>
             <select class="form-select @error('penerbit_id') is-invalid @enderror" aria-label="Select penerbit" id="penerbit_id" name="penerbit_id" value="{{ old('penerbit_id') }}" required @required(true)>
-              <option>--Pilih penerbit--</option>
+              <option value="">--Pilih penerbit--</option>
               @foreach ($penerbits as $penerbit)
                 <option value="{{ $penerbit->id }}" {{ (old('penerbit_id') ?? $buku->penerbit_id) == $buku->penerbit_id ? 'selected' : '' }}>{{ $penerbit->nama }}</option>
               @endforeach
@@ -74,9 +74,9 @@
         <div class="col-12 mb-3">
           <label for="category_id" class="form-label">Category</label>
             <select class="form-select @error('category_id') is-invalid @enderror" aria-label="Select category" id="category_id" name="category_id" value="{{ old('category_id') }}" required @required(true)>
-              <option>--Pilih category--</option>
+              <option value="">--Pilih category--</option>
               @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ (old('category_id') ?? ($buku->category()->get()[0]->id)) == ($buku->category()->get()[0]->id) ? 'selected' : '' }}>{{ $category->nama }}</option>
+                <option value="{{ $category->id }}" {{ (old('category_id') ?? ($buku->category()->get()[0]->id)) == $category->id ? 'selected' : '' }}>{{ $category->nama }}</option>
               @endforeach
             </select>
             @error('category_id')
@@ -122,7 +122,7 @@
         <div class="col-12 col-md-4 col-lg-4 mb-3">
           <label for="bahasa" class="form-label">Bahasa</label>
           <select class="form-select @error('bahasa') is-invalid @enderror" aria-label="Select bahasa" id="bahasa" name="bahasa" value="" required @required(true)>
-            <option>--Pilih Bahasa--</option>
+            <option value="">--Pilih Bahasa--</option>
             <option value="Inggris" {{ (old('bahasa') ?? $buku->bahasa) == 'Inggris' ? 'selected' : '' }} >Inggris</option>
             <option value="Indonesia" {{ (old('bahasa') ?? $buku->bahasa) == 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
           </select>
@@ -136,7 +136,7 @@
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-3">
           <label for="tanggal_terbit" class="form-label">Tanggal terbit</label>
-          <input type="text" class="form-control @error('tanggal_terbit') is-invalid @enderror" id="tanggal_terbit" name="tanggal_terbit" value="{{ old('tanggal_terbit') ?? $buku->tanggal_terbit}}" required @required(true)>
+          <input type="date" class="form-control @error('tanggal_terbit') is-invalid @enderror" id="tanggal_terbit" name="tanggal_terbit" value="{{ old('tanggal_terbit') ?? $buku->tanggal_terbit}}" required @required(true)>
           @error('tanggal_terbit')
             <div class="invalid-feedback">
               {{ $message }}
@@ -146,11 +146,11 @@
         <div class="col-12 col-md-6 col-lg-4 mb-3">
           <label for="tipe" class="form-label">Tipe</label>
           <select class="form-select @error('tipe') is-invalid @enderror" aria-label="Select tipe" id="tipe" name="tipe" value="{{ old('tipe') ?? $buku->tipe }}" required @required(true)>
-            <option>--Pilih Tipe--</option>
+            <option value="">--Pilih Tipe--</option>
             <option value="E-Book" {{ (old('tipe') ?? $buku->tipe) == 'E-Book' ? 'selected' : '' }}>E-Book</option>
             <option value="Buku Cetak" {{ (old('tipe') ?? $buku->tipe) == 'Buku Cetak' ? 'selected' : '' }}>Buku Cetak</option>
           </select>
-          @error('tanggal_terbit')
+          @error('tipe')
             <div class="invalid-feedback">
               {{ $message }}
             </div>
@@ -159,7 +159,7 @@
         <div class="col-12 col-lg-4 mb-3">
           <label for="status_ketersediaan" class="form-label">Status ketersediaan</label>
           <select class="form-select @error('tipe') is-invalid @enderror" aria-label="Select status ketersediaan" id="status_ketersediaan" name="status_ketersediaan" value="" required @required(true)>
-            <option>--Pilih Status Ketersediaan--</option>
+            <option value="">--Pilih Status Ketersediaan--</option>
             <option value="1" {{ (old('status_ketersediaan') ?? $buku->status_ketersediaan) == '1' ? 'selected' : '' }} >Tersedia</option>
             <option value="0" {{ (old('status_ketersediaan') ?? $buku->status_ketersediaan) == '0' ? 'selected' : '' }} >Tidak tersedia</option>
           </select>

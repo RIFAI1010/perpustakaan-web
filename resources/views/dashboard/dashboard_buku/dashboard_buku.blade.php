@@ -1,6 +1,22 @@
 @include('dashboard.head')
 @extends('dashboard.body')
 @section('main')
+@if (session('success'))
+    <div class="pb-2">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+@endif
+@if (session('failed'))
+  <div class="pb-2">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ session('failed') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+@endif
 <div class="row mb-2">
     <div class="col-12 col-lg-5">
       <h5 class="card-title fw-semibold mb-4">
@@ -55,7 +71,7 @@
               <i class="ti ti-edit"></i>
               View
             </a>
-            <a href="/dashboard_buku/{{ $buku->slug }}/edit" class="d-block btn btn-primary w-100 mb-2">
+            <a href="/dashboard_buku/{{ $buku->slug }}/edit" class="d-block btn btn-warning w-100 mb-2">
               <i class="ti ti-edit"></i>
               Edit
             </a>
