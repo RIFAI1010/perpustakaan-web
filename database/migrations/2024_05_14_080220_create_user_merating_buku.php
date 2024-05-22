@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('buku_id');
-            $table->unsignedDecimal('rate', 1, 1);
-            $table->longText('comment');
+            $table->unsignedDecimal('nilai', 1, 1);
+            $table->longText('komen');
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('buku_id')->references('id')->on('bukus');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('buku_id')->references('id')->on('bukus')->onDelete('cascade');
         });
     }
 

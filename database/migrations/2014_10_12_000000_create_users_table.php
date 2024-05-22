@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->string('phone_number')->unique();
+            $table->string('no_telp')->unique();
             $table->string('password');
             $table->enum('class', ['X', 'XI', 'XII']);
             $table->enum('role', ['siswa', 'staff', 'super admin']);

@@ -15,16 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('buku_id');
-            $table->date('reserve_date');
-            $table->date('due_date');
-            $table->date('return_date');
+            $table->date('tanggal_memulai_peminjaman');
+            $table->date('tanggal_deadline_peminjaman');
+            $table->date('tanggal_dikembalikan');
             $table->enum('status_pengembalian', ['normal', 'rusak', 'hilang']);
             $table->unsignedInteger('denda')->nullable();
             $table->string('foto_pengembalian')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('buku_id')->references('id')->on('bukus');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('buku_id')->references('id')->on('bukus')->onDelete('cascade');
         });
     }
 
