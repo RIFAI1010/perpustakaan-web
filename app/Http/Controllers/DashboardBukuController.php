@@ -47,7 +47,7 @@ class DashboardBukuController extends Controller
             'penerbit_id' => ['required'],
             'category_id' => ['required'],
             'deskripsi' => ['required'],
-            'isbn' => ['required', 'min:10',' max:10'],
+            'isbn' => ['required', 'min:10',' max:10', 'unique:bukus,isbn'],
             'jumlah_halaman' => ['required'],
             'bahasa' => ['required'],
             'tanggal_terbit' => ['required'],
@@ -63,7 +63,6 @@ class DashboardBukuController extends Controller
         $createdBuku = Buku::create([
             'image' => $image->hashName(),
             'judul' => $request->judul,
-            'slug' => Str::slug($request->judul),
             'penerbit_id' => $request->penerbit_id,
             'deskripsi' => $request->deskripsi,
             'isbn' => $request->isbn,
@@ -133,6 +132,7 @@ class DashboardBukuController extends Controller
         ]);
 
         $buku = Buku::findOrFail($id);
+        $buku->slug = null;
 
         if ($request->hasFile('image')) {
 
@@ -144,7 +144,6 @@ class DashboardBukuController extends Controller
             $buku->update([
                 'image' => $image->hashName(),
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul),
                 'penerbit_id' => $request->penerbit_id,
                 'deskripsi' => $request->deskripsi,
                 'isbn' => $request->isbn,
@@ -169,7 +168,6 @@ class DashboardBukuController extends Controller
         } else {
             $buku->update([
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul),
                 'penerbit_id' => $request->penerbit_id,
                 'deskripsi' => $request->deskripsi,
                 'isbn' => $request->isbn,
