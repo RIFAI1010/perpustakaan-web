@@ -37,10 +37,10 @@
           </a>
         </div>
         <div>
-          <form action="" method="post">
-            <?= csrf_field(); ?>
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure?');">
+          <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboard_buku.destroy', $buku->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger w-100">
               <i class="ti ti-trash"></i>
               Delete
             </button>
@@ -59,7 +59,9 @@
         <div class="w-100 mb-2">
           <h4 class="mb-2">{{ $buku->judul }}</h4>
           <h6>ID Buku: {{ $buku->id }}</h6>
-          <h6>Author: Osama bin Laden</h6>
+          <h6>Penulis: {{ $buku->penulis()->get()[0]->nama ?? 'Tidak diketahui'}}</h6>
+          <h6>Category: {{ $buku->category()->get()[0]->nama ?? 'Tidak diketahui'}}</h6>
+          <h6>Penerbit: {{ $buku->penerbit()->get()[0]->nama ?? 'Tidak diketahui'}}</h6>
           <h6>Slug: {{ $buku->slug }}</h6>
           <h6>ISBN: {{ $buku->isbn }}</h6>
           <h6>Jumlah Halaman: {{ $buku->jumlah_halaman }}</h6>
@@ -70,7 +72,6 @@
           <h6>Tipe: {{ $buku->tipe }}</h6>
           <h6>Status Ketersediaan: {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}</h6>
           <h6>Status Approval: {{ $buku->status_approval }}</h6>
-          <h6>ID Penerbit: {{ $buku->penerbit_id }}</h6>
           <h6>ID Peminjam: {{ $buku->peminjam_id }}</h6>
           <h6>Tanggal Memulai Peminjaman: {{ $buku->tanggal_memulai_peminjaman }}</h6>
           <h6>Tanggal Deadline: {{ $buku->tanggal_deadline_peminjaman }}</h6>

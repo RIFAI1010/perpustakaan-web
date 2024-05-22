@@ -55,17 +55,17 @@
     <tbody class="table-group-divider">
       @forelse ($bukus as $buku)
         <tr>
-          <td>{{ $buku->id }}</td>
+          <td>{{ $buku->id ?? 'Tidak diketahui'}}</td>
           <td>
             <div class="d-flex justify-content-center" style="max-width: 150px; height: 120px;">
               <img class="mx-auto mh-100" src="{{ asset("storage/buku/$buku->image") }}" alt="{{ $buku->judul }}">
             </div>
           </td>
           <td>
-            <p class="text-primary-emphasis text-decoration-underline"><b>{{ $buku->judul }}</b></p>
-            <p class="text-body">Author : {{ $buku->penulis()->get()[0]->nama }}</p>
+            <p class="text-primary-emphasis text-decoration-underline"><b>{{ $buku->judul ?? 'Tidak diketahui'}}</b></p>
+            <p class="text-body">Author : {{ $buku->penulis()->get()[0]->nama ?? 'Tidak diketahui'}}</p>
           </td>
-          <td>{{ $buku->tipe }}</td>
+          <td>{{ $buku->tipe ?? 'Tidak diketahui'}}</td>
           <td>
             <a href="/dashboard_buku/{{ $buku->slug }}" class="d-block btn btn-primary w-100 mb-2">
               <i class="ti ti-edit"></i>
