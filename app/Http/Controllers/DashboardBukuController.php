@@ -18,7 +18,7 @@ class DashboardBukuController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboard_buku.dashboard_buku', [
+        return view('dashboard.dashboard_buku.dashboard_buku_index', [
             'bukus' => Buku::all(),
         ]);
     }
@@ -68,7 +68,7 @@ class DashboardBukuController extends Controller
             'isbn' => $request->isbn,
             'jumlah_halaman' => $request->jumlah_halaman,
             'bahasa' => $request->bahasa,
-            'tanggal_terbit' => now(),
+            'tanggal_terbit' => $request->tanggal_terbit,
             'tipe' => $request->tipe,
             'status_ketersediaan' => $request->status_ketersediaan,
         ]);
@@ -92,7 +92,7 @@ class DashboardBukuController extends Controller
     public function show(string $slug)
     {
         return view('dashboard.dashboard_buku.dashboard_buku_show', [
-            'buku' => Buku::all()->firstWhere('slug', $slug),
+            'buku' => Buku::where('slug', $slug)->firstOrFail(),
         ]);
     }
 
@@ -102,7 +102,7 @@ class DashboardBukuController extends Controller
     public function edit(string $slug)
     {
         return view('dashboard.dashboard_buku.dashboard_buku_edit', [
-            'buku' => Buku::all()->firstWhere('slug', $slug),
+            'buku' => Buku::where('slug', $slug)->firstOrFail(),
             'penuliss' => Penulis::all(),
             'penerbits' => Penerbit::all(),
             'categories' => Category::all(),
@@ -149,7 +149,7 @@ class DashboardBukuController extends Controller
                 'isbn' => $request->isbn,
                 'jumlah_halaman' => $request->jumlah_halaman,
                 'bahasa' => $request->bahasa,
-                'tanggal_terbit' => now(),
+                'tanggal_terbit' => $request->tanggal_terbit,
                 'tipe' => $request->tipe,
                 'status_ketersediaan' => $request->status_ketersediaan,
             ]);
@@ -173,7 +173,7 @@ class DashboardBukuController extends Controller
                 'isbn' => $request->isbn,
                 'jumlah_halaman' => $request->jumlah_halaman,
                 'bahasa' => $request->bahasa,
-                'tanggal_terbit' => now(),
+                'tanggal_terbit' => $request->tanggal_terbit,
                 'tipe' => $request->tipe,
                 'status_ketersediaan' => $request->status_ketersediaan,
             ]);

@@ -8,7 +8,7 @@
 
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title fw-semibold">Form Tambah Buku</h5>
+    <h5 class="card-title fw-semibold">Form Edit Buku</h5>
     <form action="{{ route('dashboard_buku.update', $buku->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
