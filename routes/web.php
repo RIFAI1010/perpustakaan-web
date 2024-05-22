@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardBukuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,5 @@ Route::get('/login', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::resource('/dashboard_buku', DashboardBukuController::class);
