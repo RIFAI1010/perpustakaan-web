@@ -17,25 +17,25 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('image');
-            $table->string('title');
+            $table->string('judul');
             $table->longText('deskripsi');
             $table->string('isbn', 10);
-            $table->unsignedSmallInteger('page_count');
-            $table->enum('language', ['Indonesia', 'Inggris']);
-            $table->unsignedDecimal('average_rating', 1, 1);
-            $table->unsignedInteger('ratings_count');
-            $table->date('published_date');
+            $table->unsignedSmallInteger('jumlah_halaman');
+            $table->enum('bahasa', ['Indonesia', 'Inggris']);
+            $table->unsignedDecimal('rata_rata_rating', 1, 1)->nullable();
+            $table->unsignedInteger('jumlah_perating')->default(0);
+            $table->date('tanggal_terbit');
             $table->enum('tipe', ['E-Book', 'Buku Cetak']);
             $table->boolean('status_ketersediaan');
             $table->boolean('status_approval')->nullable();
             $table->unsignedBigInteger('penerbit_id');
             $table->unsignedBigInteger('peminjam_id')->nullable();
-            $table->date('reserve_date')->nullable();
-            $table->date('due_date')->nullable();
+            $table->date('tanggal_memulai_peminjaman')->nullable();
+            $table->date('tanggal_deadline_peminjaman')->nullable();
             $table->timestamps();
 
-            $table->foreign('penerbit_id')->references('id')->on('penerbits');
-            $table->foreign('peminjam_id')->references('id')->on('users');
+            $table->foreign('penerbit_id')->references('id')->on('penerbits')->onDelete('cascade');
+            $table->foreign('peminjam_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }
