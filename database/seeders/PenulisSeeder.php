@@ -15,7 +15,7 @@ class PenulisSeeder extends Seeder
     public function run(): void
     {
         DB::table('penulis')->insert([
-            'name' => 'Mamang Samele',
+            'nama' => 'Mamang Samele',
             'slug' => 'mamang_samele'
         ]);
     }

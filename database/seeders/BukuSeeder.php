@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Buku;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,21 +15,21 @@ class BukuSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('bukus')->insert([
+        Buku::create([
             'image' => 'kocick.jpg',
-            'title' => 'Cara Membesarkan Otak Agar Supabase Menjadi Linear Algebra',
+            'judul' => 'Cara Membesarkan Otak Agar Supabase Menjadi Linear Algebra',
             'slug' => 'cara_membesarkan_otak_agar_supabase_menjadi_linear_algebra',
             'deskripsi' => 'Bersiwak bagus untuk membersihkan gigi',
             'isbn' => '6969696969',
-            'page_count' => 123,
-            'language' => 'Indonesia',
-            'average_rating' => 0.0,
-            'ratings_count' => 69699,
-            'published_date' => now(),
+            'jumlah_halaman' => 123,
+            'bahasa' => 'Indonesia',
+            'rata_rata_rating' => 0.0,
+            'jumlah_perating' => 69699,
+            'tanggal_terbit' => now(),
             'tipe' => 'E-Book',
             'status_ketersediaan' => 1,
-            'reserve_date' => now(),
-            'due_date' => now(),
+            'tanggal_memulai_peminjaman' => now(),
+            'tanggal_deadline_peminjaman' => now(),
 
             'penerbit_id' => 1,
         ]);

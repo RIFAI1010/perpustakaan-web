@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'last_name' => fake()->lastName(),
             'username' => 'opalkerenbat',
             'email' => fake()->unique()->safeEmail(),
-            'phone_number' => '087772986753',
+            'no_telp' => '087772986753',
             'password' => Hash::make('password'),
             'class' => 'XI',
             'role' => 'siswa',
