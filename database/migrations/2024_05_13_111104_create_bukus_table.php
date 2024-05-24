@@ -27,10 +27,8 @@ return new class extends Migration
             $table->date('tanggal_terbit');
             $table->enum('tipe', ['E-Book', 'Buku Cetak']);
             $table->boolean('status_ketersediaan');
-            $table->boolean('status_approval')->nullable();
             $table->unsignedBigInteger('penerbit_id');
             $table->unsignedBigInteger('peminjam_id')->nullable();
-            $table->date('tanggal_memulai_peminjaman')->nullable();
             $table->date('tanggal_deadline_peminjaman')->nullable();
             $table->timestamps();
 
