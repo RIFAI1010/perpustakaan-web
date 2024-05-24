@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
     <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
     <style>
-        
 
-        
+
+
     </style>
 </head>
 
@@ -47,9 +48,17 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-
+                        @for ($i = 1; $i <= 20; $i++)
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="./a" aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-house" style="font-size: 25px"></i>
+                                </span>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+                        @endfor
                     </ul>
-
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -70,7 +79,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                                <i class="tbi bi-bell"></i>
+                                <i class="bi bi-bell"></i>
                                 <div class="notification bg-primary rounded-circle"></div>
                             </a>
                         </li>
@@ -81,12 +90,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{-- <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35"
-                                        class="rounded-circle"> --}}
+                                    <!-- <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35"
+                                        class="rounded-circle"> -->
                                     <i class="bi bi-person-circle" style="color:#5D87FF; font-size: 30px"></i>
-
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
@@ -125,53 +132,40 @@
                                         <h4 class="fw-semibold">Kategori</h4>
                                     </div>
                                     <div>
-                                        {{-- beetwen hole --}}
+                                        <!-- beetwen hole -->
                                     </div>
                                 </div>
-                                <div class="scrollable-y mb-9 pb-2" id="scrollable-card">
-                                    <button type="button" class="btn btn-primary">Button 1</button>
-                                    @for ($i = 1; $i <= 15; $i++) <button type="button" class="btn btn-outline-primary mx-2 d-inline-block">
-                                        Button 2</button>
+                                <div class="scrollable-y mb-9 pb-2" id="scrollable-card" style="overflow: hidden">
+                                    <button type="button" class="btn btn-primary mx-2 d-inline-block">Button 1</button>
+                                    @for ($i = 1; $i <= 15; $i++) <button type="button"
+                                        class="btn btn-outline-primary mx-2 d-inline-block">Button 2</button>
                                         @endfor
                                 </div>
-                                <div class="scrollable-y pb-2 d-flex" id="scrollable-cover">
+                                <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
                                     @for ($i = 1; $i <= 8; $i++) <div class="col-sm-6 col-md-2">
-                                        <div class="card overflow-hidden rounded-2 mx-3">
+                                        <div class="overflow-hidden rounded-2 mx-3 shadow">
                                             <div class="position-relative">
-                                                <a href="javascript:void(0)"><img src="../assets/images/products/s4.jpg"
-                                                        class="card-img-top rounded-0" alt="..."></a>
-                                                <a href="javascript:void(0)"
-                                                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-title="Add To Cart"><i class="bi bi-heart fs-4"
-                                                        style="height: 16px;"></i></a>
+                                                <a href="javascript:void(0)">
+                                                    <img src="../assets/images/products/s4.jpg"
+                                                        class="card-img-top rounded-0" alt="...">
+                                                </a>
+                                                <a href="#"
+                                                    class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
+                                                    style="width: 32px; height: 32px;">
+                                                    <i class="bi bi-heart fs-4"></i>
+                                                </a>
                                             </div>
-                                            <div class="card-body pt-3 p-1">
+                                            <div class="card-body pt-3 p-2">
                                                 <h6 class="fw-semibold fs-3">Boat Headphone</h6>
                                                 <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="fw-semibold fs-2 mb-0">$50 </span>
-                                                    </h6>
-                                                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                                                        <li><a class="me-1" href="javascript:void(0)"><i
-                                                                    class="bi bi-star fs-2 text-warning"></i></a></li>
-                                                        <li><a class="me-1" href="javascript:void(0)"><i
-                                                                    class="bi bi-star fs-2 text-warning"></i></a></li>
-                                                        <li><a class="me-1" href="javascript:void(0)"><i
-                                                                    class="bi bi-star fs-2 text-warning"></i></a></li>
-                                                        <li><a class="me-1" href="javascript:void(0)"><i
-                                                                    class="bi bi-star fs-2 text-warning"></i></a></li>
-                                                        <li><a class="" href="javascript:void(0)"><i
-                                                                    class="bi bi-star fs-2 text-warning"></i></a></li>
-                                                    </ul>
+                                                    <h6 class="fw-semibold fs-2 mb-0">$50</h6>
+
                                                 </div>
                                             </div>
                                         </div>
                                 </div>
                                 @endfor
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -181,10 +175,11 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script>
-   const scrollableCard = document.getElementById('scrollable-card');
+        const scrollableCard = document.getElementById('scrollable-card');
         scrollableCard.addEventListener('wheel', (event) => {
             if (event.deltaY !== 0) {
                 event.preventDefault();
