@@ -30,11 +30,11 @@
                     <span class="hide-menu">CRUD PENGGUNA</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard_user" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard_siswa" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
-                        <span class="hide-menu">User</span>
+                        <span class="hide-menu">Siswa</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
