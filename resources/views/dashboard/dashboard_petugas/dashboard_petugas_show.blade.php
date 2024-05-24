@@ -25,14 +25,14 @@
     <div class="d-flex justify-content-between mb-4">
       <div>
         <a href="/dashboard_petugas" class="btn btn-outline-primary">
-          <i class="ti ti-arrow-left"></i>
+          <i class="bi bi-arrow-left"></i>
           Kembali
         </a>
       </div>
       <div class="d-flex gap-2 justify-content-end">
         <div>
           <a href="/dashboard_petugas/{{ $petugas->username }}/edit" class="btn btn-primary w-100">
-            <i class="ti ti-edit"></i>
+            <i class="bi bi-pencil"></i>
             Edit
           </a>
         </div>
@@ -41,7 +41,7 @@
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger w-100">
-              <i class="ti ti-trash"></i>
+              <i class="bi bi-trash"></i>
               Delete
             </button>
           </form>

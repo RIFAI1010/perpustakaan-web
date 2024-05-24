@@ -6,16 +6,14 @@
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-<<<<<<< HEAD
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
     <style>
 
 
 
     </style>
-=======
->>>>>>> 3443c8b654d66b932c2aac571375a2ea7546b9fa
 </head>
 
 <body>
@@ -44,7 +42,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./dashboard" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-house" style="font-size: 25px"></i>
+                                    <i class="bi bi-house"></i>
                                 </span>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
@@ -53,7 +51,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./a" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-house" style="font-size: 25px"></i>
+                                    <i class="bi bi-house"></i>
                                 </span>
                                 <span class="hide-menu">Dashboard</span>
                             </a>

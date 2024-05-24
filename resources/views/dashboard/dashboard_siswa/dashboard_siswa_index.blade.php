@@ -35,7 +35,7 @@
         </div>
         <div>
           <a href="/dashboard_siswa/create" class="btn btn-primary py-2">
-            <i class="ti ti-plus"></i>
+            <i class="bi bi-plus"></i>
             Tambah siswa
           </a>
         </div>
@@ -73,18 +73,18 @@
           </td>
           <td>
             <a href="/dashboard_siswa/{{ $siswa->username }}" class="d-block btn btn-primary w-100 mb-2">
-              <i class="ti ti-edit"></i>
+              <i class="bi bi-pencil"></i>
               View
             </a>
             <a href="/dashboard_siswa/{{ $siswa->username }}/edit" class="d-block btn btn-warning w-100 mb-2">
-              <i class="ti ti-edit"></i>
+              <i class="bi bi-pencil"></i>
               Edit
             </a>
             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboard_siswa.destroy', $siswa->id) }}" method="POST">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger w-100">
-                <i class="ti ti-trash"></i>
+                <i class="bi bi-trash"></i>
                 Delete
               </button>
             </form>

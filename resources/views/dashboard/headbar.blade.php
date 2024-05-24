@@ -5,12 +5,12 @@
             <li class="nav-item d-block d-xl-none">
                 <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse"
                     href="javascript:void(0)">
-                    <i class="ti ti-menu-2"></i>
+                    <i class="bi bi-list"></i>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                    <i class="ti ti-bell-ringing"></i>
+                    <i class="bi bi-bell"></i>
                     <div class="notification bg-primary rounded-circle"></div>
                 </a>
             </li>
@@ -31,17 +31,17 @@
                         <div class="message-body">
                             <a href="javascript:void(0)"
                                 class="d-flex align-items-center gap-2 dropdown-item">
-                                <i class="ti ti-user fs-6"></i>
+                                <i class="bi bi-person fs-6"></i>
                                 <p class="mb-0 fs-3">My Profile</p>
                             </a>
                             <a href="javascript:void(0)"
                                 class="d-flex align-items-center gap-2 dropdown-item">
-                                <i class="ti ti-mail fs-6"></i>
+                                <i class="bi bi-envelope fs-6"></i>
                                 <p class="mb-0 fs-3">My Account</p>
                             </a>
                             <a href="javascript:void(0)"
                                 class="d-flex align-items-center gap-2 dropdown-item">
-                                <i class="ti ti-list-check fs-6"></i>
+                                <i class="bi bi-list-check fs-6"></i>
                                 <p class="mb-0 fs-3">My Task</p>
                             </a>
                             <a href="./authentication-login.html"

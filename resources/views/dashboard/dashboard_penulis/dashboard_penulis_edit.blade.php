@@ -2,7 +2,7 @@
 @extends('dashboard.body')
 @section('main')
 <a href="/dashboard_penulis" class="btn btn-outline-primary mb-3">
-  <i class="ti ti-arrow-left"></i>
+  <i class="bi bi-arrow-left"></i>
   Kembali
 </a>
 
