@@ -78,24 +78,32 @@
             <p>{{ $data->foto_buku_dikembalikan }}</p>
           </td>
           <td>
-            <button type="button" class="d-block btn btn-success w-100 mb-2" data-bs-toggle="modal" data-bs-target="#setujuModal">
+            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="/dashboard_penyetujuan_pengembalian/setuju/{{ $data->id }}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-success w-100">
+                  <i class="ti ti-trash"></i>
+                  Setuju
+              </button>
+            </form>
+            <button type="button" class="d-block btn btn-danger w-100 mb-2" data-bs-toggle="modal" data-bs-target="#beriDendaModal">
                 <i class="ti ti-edit"></i>
-                Setuju
+                Beri denda
             </button>
-            <form action="/dashboard_penyetujuan_pengembalian/setuju/{{ $data->id }}" method="post">
+            <form action="/dashboard_penyetujuan_pengembalian/beri_denda/{{ $data->id }}" method="post">
               @csrf
               @method('PUT')
-              <div class="modal fade" id="setujuModal" tabindex="-1" aria-labelledby="setujuModalLabel" aria-hidden="true">
+              <div class="modal fade" id="beriDendaModal" tabindex="-1" aria-labelledby="beriDendaModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="setujuModalLabel">Setujui Pengembalian Buku</h5>
+                      <h5 class="modal-title" id="beriDendaModalLabel">Beri Denda Pengembalian Buku</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <label for="tanggal_deadline_pengembalian" class="form-label">Tanggal Deadline pengembalian</label>
-                      <input type="date" class="form-control @error('tanggal_deadline_pengembalian') is-invalid @enderror" id="tanggal_deadline_pengembalian" name="tanggal_deadline_pengembalian" value="{{ old('tanggal_deadline_pengembalian') }}" required @required(true)>
-                      @error('tanggal_deadline_pengembalian')
+                      <label for="jumlah_denda" class="form-label">Jumlah Denda</label>
+                      <input type="number" class="form-control @error('jumlah_denda') is-invalid @enderror" id="jumlah_denda" name="jumlah_denda" value="{{ old('jumlah_denda') }}" required @required(true)>
+                      @error('jumlah_denda')
                         <div class="invalid-feedback">
                           {{ $message }}
                         </div>
@@ -103,19 +111,11 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-success">Setujui</button>
+                      <button type="submit" class="btn btn-success">Berikan denda</button>
                     </div>
                   </div>
                 </div>
               </div>  
-            </form>
-            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="/dashboard_penyetujuan_pengembalian/setuju/{{ $data->id }}" method="POST">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger w-100">
-                  <i class="ti ti-trash"></i>
-                  Setuju
-              </button>
             </form>
           </td>
         </tr>

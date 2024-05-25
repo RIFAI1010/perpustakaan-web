@@ -21,7 +21,6 @@ return new class extends Migration
             $table->date('tanggal_pengembalian_peminjaman')->nullable();
             $table->enum('status_pengembalian', ['normal', 'rusak', 'hilang'])->nullable();
             $table->unsignedInteger('denda')->default(0)->nullable();
-            $table->boolean('status_pembayaran_denda')->nullable();
             $table->string('foto_buku_dikembalikan')->nullable();
 
             $table->foreign('buku_id')->references('id')->on('bukus')->onDelete('cascade');
