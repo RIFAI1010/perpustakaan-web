@@ -86,11 +86,19 @@
                     <span class="hide-menu">Report</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard_report-buku" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard_laporan_peminjaman_berlangsung" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
-                        <span class="hide-menu">Report Buku</span>
+                        <span class="hide-menu">Report Buku Berlangsung</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dashboard_transaksi_peminjaman" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-dashboard"></i>
+                        </span>
+                        <span class="hide-menu">Report Buku Final</span>
                     </a>
                 </li>
             </ul>

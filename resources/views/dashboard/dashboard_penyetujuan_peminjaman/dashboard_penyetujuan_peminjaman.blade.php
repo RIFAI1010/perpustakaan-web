@@ -28,16 +28,10 @@
         <div>
           <form action="" method="get">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" name="search" value="<?= $search ?? ''; ?>" placeholder="Cari buku" aria-label="Cari buku" aria-describedby="searchButton">
+              <input type="text" class="form-control" name="search" value="<?= $search ?? ''; ?>" placeholder="Cari data" aria-label="Cari data" aria-describedby="searchButton">
               <button class="btn btn-outline-secondary" type="submit" id="searchButton">Cari</button>
             </div>
           </form>
-        </div>
-        <div>
-          <a href="/dashboard_buku/create" class="btn btn-primary py-2">
-            <i class="ti ti-plus"></i>
-            Tambah Data Buku
-          </a>
         </div>
       </div>
     </div>

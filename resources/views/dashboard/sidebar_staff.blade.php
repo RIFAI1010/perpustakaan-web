@@ -66,7 +66,7 @@
                     <span class="hide-menu">Penyetujuan</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard_buku" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard_penyetujuan_peminjaman" aria-expanded="false">
                         <span>
                             <i class="ti ti-book"></i>
                         </span>
@@ -74,11 +74,19 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard_category" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard_penyetujuan_pengembalian" aria-expanded="false">
                         <span>
                             <i class="ti ti-tag"></i>
                         </span>
                         <span class="hide-menu">Pengembalian</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/dashboard_denda" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-tag"></i>
+                        </span>
+                        <span class="hide-menu">Denda</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
@@ -86,7 +94,7 @@
                     <span class="hide-menu">Report</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard_report-buku" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard_laporan_peminjaman_berlangsung" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -94,7 +102,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard_report-buku" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard_transaksi_peminjaman" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>

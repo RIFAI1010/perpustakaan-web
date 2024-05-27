@@ -42,46 +42,48 @@
       </div>
     </div>
   </div>
-  <table class="table table-hover table-striped">
-    <thead class="table-light">
-      <tr>
-        <th scope="col">ID Penerbit</th>
-        <th scope="col">Nama Penerbit</th>
-        <th scope="col">Slug</th>
-        <th scope="col" class="text-center">Aksi</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      @forelse ($penerbits as $penerbit)
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead class="table-light">
         <tr>
-          <td>{{ $penerbit->id }}</td>
-          <td>
-            <p class="text-primary-emphasis"><b>{{ $penerbit->nama }}</b></p>
-          </td>
-          <td>
-            <p><b>{{ $penerbit->slug }}</b></p>
-          </td>
-          <td>
-            <a href="/dashboard_penerbit/{{ $penerbit->slug }}/edit" class="d-block btn btn-warning w-100 mb-2">
-              <i class="ti ti-edit"></i>
-              Edit
-            </a>
-            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboard_penerbit.destroy', $penerbit->id) }}" method="POST">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger w-100">
-                <i class="ti ti-trash"></i>
-                Delete
-              </button>
-            </form>
-          </td>
+          <th scope="col">ID Penerbit</th>
+          <th scope="col">Nama Penerbit</th>
+          <th scope="col">Slug</th>
+          <th scope="col" class="text-center">Aksi</th>
         </tr>
-      @empty
-        <tr>
-          <td class="text-center" colspan="7"><b>Tidak ada data</b></td>
-        </tr>
-      @endforelse
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="table-group-divider">
+        @forelse ($penerbits as $penerbit)
+          <tr>
+            <td>{{ $penerbit->id }}</td>
+            <td>
+              <p class="text-primary-emphasis"><b>{{ $penerbit->nama }}</b></p>
+            </td>
+            <td>
+              <p><b>{{ $penerbit->slug }}</b></p>
+            </td>
+            <td>
+              <a href="/dashboard_penerbit/{{ $penerbit->slug }}/edit" class="d-block btn btn-warning w-100 mb-2">
+                <i class="ti ti-edit"></i>
+                Edit
+              </a>
+              <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboard_penerbit.destroy', $penerbit->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger w-100">
+                  <i class="ti ti-trash"></i>
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+        @empty
+          <tr>
+            <td class="text-center" colspan="7"><b>Tidak ada data</b></td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
 @endsection
 @include('dashboard.footer')
