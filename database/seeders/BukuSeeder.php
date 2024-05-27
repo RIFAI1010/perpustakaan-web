@@ -28,8 +28,6 @@ class BukuSeeder extends Seeder
             'tanggal_terbit' => now(),
             'tipe' => 'E-Book',
             'status_ketersediaan' => 1,
-            'tanggal_memulai_peminjaman' => now(),
-            'tanggal_deadline_peminjaman' => now(),
 
             'penerbit_id' => 1,
         ]);

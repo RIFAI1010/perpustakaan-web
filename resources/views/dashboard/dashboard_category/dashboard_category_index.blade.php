@@ -42,46 +42,48 @@
       </div>
     </div>
   </div>
-  <table class="table table-hover table-striped">
-    <thead class="table-light">
-      <tr>
-        <th scope="col">ID Category</th>
-        <th scope="col">Nama Category</th>
-        <th scope="col">Slug</th>
-        <th scope="col" class="text-center">Aksi</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      @forelse ($categories as $category)
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead class="table-light">
         <tr>
-          <td>{{ $category->id }}</td>
-          <td>
-            <p class="text-primary-emphasis"><b>{{ $category->nama }}</b></p>
-          </td>
-          <td>
-            <p><b>{{ $category->slug }}</b></p>
-          </td>
-          <td>
-            <a href="/dashboard_category/{{ $category->slug }}/edit" class="d-block btn btn-warning w-100 mb-2">
-              <i class="bi bi-pencil"></i>
-              Edit
-            </a>
-            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboard_category.destroy', $category->id) }}" method="POST">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger w-100">
-                <i class="bi bi-trash"></i>
-                Delete
-              </button>
-            </form>
-          </td>
+          <th scope="col">ID Category</th>
+          <th scope="col">Nama Category</th>
+          <th scope="col">Slug</th>
+          <th scope="col" class="text-center">Aksi</th>
         </tr>
-      @empty
-        <tr>
-          <td class="text-center" colspan="7"><b>Tidak ada data</b></td>
-        </tr>
-      @endforelse
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="table-group-divider">
+        @forelse ($categories as $category)
+          <tr>
+            <td>{{ $category->id }}</td>
+            <td>
+              <p class="text-primary-emphasis"><b>{{ $category->nama }}</b></p>
+            </td>
+            <td>
+              <p><b>{{ $category->slug }}</b></p>
+            </td>
+            <td>
+              <a href="/dashboard_category/{{ $category->slug }}/edit" class="d-block btn btn-warning w-100 mb-2">
+                <i class="bi bi-pencil"></i>
+                Edit
+              </a>
+              <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboard_category.destroy', $category->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger w-100">
+                  <i class="bi bi-trash"></i>
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+        @empty
+          <tr>
+            <td class="text-center" colspan="7"><b>Tidak ada data</b></td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
 @endsection
 @include('dashboard.footer')
