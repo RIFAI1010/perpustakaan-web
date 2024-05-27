@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardBukuController;
+use App\Http\Controllers\DashboardDendaController;
 use App\Http\Controllers\DashboardSiswaController;
 use App\Http\Controllers\DashboardPenulisController;
 use App\Http\Controllers\DashboardPetugasController;
 use App\Http\Controllers\DashboardCategoryController;
-use App\Http\Controllers\DashboardDendaController;
 use App\Http\Controllers\DashboardPenerbitController;
 use App\Http\Controllers\DashboardPenyetujuanPeminjamanController;
 use App\Http\Controllers\DashboardPenyetujuanPengembalianController;
+use App\Http\Controllers\DashboardLaporanTransaksiPeminjamanBukuController;
+use App\Http\Controllers\DashboardLaporanPeminjamanBukuBerlangsungController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +58,6 @@ Route::put('/dashboard_penyetujuan_pengembalian/beri_denda/{id}', [DashboardPeny
 
 Route::get('/dashboard_denda', [DashboardDendaController::class, 'index'])->name('dashboard_denda');
 Route::delete('/dashboard_denda/diterima/{id}', [DashboardDendaController::class, 'diterima']);
+
+Route::get('/dashboard_laporan_peminjaman_berlangsung', [DashboardLaporanPeminjamanBukuBerlangsungController::class, 'index']);
+Route::get('/dashboard_transaksi_peminjaman', [DashboardLaporanTransaksiPeminjamanBukuController::class, 'index']);
