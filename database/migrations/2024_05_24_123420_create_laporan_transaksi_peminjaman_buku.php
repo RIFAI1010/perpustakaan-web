@@ -13,18 +13,20 @@ return new class extends Migration
     {
         Schema::create('laporan_transaksi_peminjaman_buku', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('buku_id');
-            $table->date('tanggal_memulai_peminjaman');
+            $table->unsignedBigInteger('peminjam_id');
+            $table->date('tanggal_pengajuan_peminjaman');
+            $table->date('tanggal_peminjaman_disetujui');
             $table->date('tanggal_deadline_peminjaman');
-            $table->date('tanggal_dikembalikan');
+            $table->date('tanggal_pengembalian_peminjaman');
+            $table->date('tanggal_pengembalian_disetujui');
             $table->enum('status_pengembalian', ['normal', 'rusak', 'hilang']);
-            $table->unsignedInteger('denda')->nullable();
-            $table->string('foto_pengembalian')->nullable();
-            $table->timestamps();
+            $table->unsignedInteger('denda')->default(0);
+            $table->string('foto_buku_dikembalikan')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('buku_id')->references('id')->on('bukus')->onDelete('cascade');
+            $table->foreign('peminjam_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
