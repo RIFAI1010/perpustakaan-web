@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Category;
 
 class AuthController extends Controller
 {
@@ -41,8 +42,11 @@ class AuthController extends Controller
                 return view('admin.dashboard');
             case 'staff':
                 return view('petugas.dashboard');
-            case 'siswa':
-                return view('siswa.dashboard');
+            case 'siswa': {
+                $categories = Category::all();
+                return view('siswa.dashboard', compact('categories'));
+            }
+                
         }
     }
 

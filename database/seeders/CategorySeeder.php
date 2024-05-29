@@ -18,5 +18,9 @@ class CategorySeeder extends Seeder
             'nama' => 'Kisah Sedih',
             'slug' => 'kisah_sedih',
         ]);
+        DB::table('categories')->insert([
+            'nama' => 'sci-fi',
+            'slug' => 'sci_fi',
+        ]);
     }
 }
