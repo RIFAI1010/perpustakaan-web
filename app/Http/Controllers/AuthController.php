@@ -32,6 +32,20 @@ class AuthController extends Controller
 
     }
 
+    public function index()
+    {
+        $role = Auth::user()->role;
+
+        switch ($role) {
+            case 'admin':
+                return view('admin.dashboard');
+            case 'staff':
+                return view('petugas.dashboard');
+            case 'siswa':
+                return view('siswa.dashboard');
+        }
+    }
+
     public function logout()
     {
         Auth::logout();

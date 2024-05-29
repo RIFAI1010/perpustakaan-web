@@ -138,7 +138,7 @@
                                         <!-- beetwen hole -->
                                     </div>
                                 </div>
-                                <div class="scrollable-y mb-9 pb-2" id="scrollable-card" style="overflow: hidden">
+                                <div class="scrollable-y mb-9 pb-2" id="scrollable-card" style="">
                                     <button type="button" class="btn btn-primary mx-2 d-inline-block">Button 1</button>
                                     @for ($i = 1; $i <= 15; $i++) <button type="button"
                                         class="btn btn-outline-primary mx-2 d-inline-block">Button 2</button>

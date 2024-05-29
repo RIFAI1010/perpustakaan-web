@@ -6,8 +6,8 @@
     <title>Admin Dashboard</title>
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
-    <p>Welcome, Admin!</p>
+    <h1>Petugas Dashboard</h1>
+    <p>Welcome, Petugas!</p>
     <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button type="submit">Logout</button>

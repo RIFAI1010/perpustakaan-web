@@ -64,7 +64,7 @@
           <h6>Kelas: {{ $siswa->class }}</h6>
           <h6>Email: {{ $siswa->email }}</h6>
           <h6>No Telp: {{ $siswa->no_telp }}</h6>
-          <h6>Password: {{ $siswa->password }}</h6>
+          <h6>Password:</h6>
           <h6>Role: {{ $siswa->role }}</h6>
         </div>
       </div>

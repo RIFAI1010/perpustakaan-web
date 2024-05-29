@@ -36,8 +36,8 @@ class DashboardPetugasController extends Controller
             'first_name' => ['required'],
             'last_name' => ['required'],
             'username' => ['required', 'unique:users,username'],
-            'email' => ['required', 'unique:users,email', 'email:dns'],
-            'no_telp' => ['required', 'unique:users,no_telp', 'min:8'],
+            // 'email' => ['required', 'unique:users,email', 'email:dns'],
+            // 'no_telp' => ['required', 'unique:users,no_telp', 'min:8'],
             'password' => ['required', 'min:8'],
         ]);
 
@@ -49,8 +49,8 @@ class DashboardPetugasController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'username' => $request->username,
-            'email' => $request->email,
-            'no_telp' => $request->no_telp,
+            // 'email' => $request->email,
+            // 'no_telp' => $request->no_telp,
             'password' => $request->password,
             'role' => 'staff',
             'created_at' => now(),
@@ -89,8 +89,8 @@ class DashboardPetugasController extends Controller
             'first_name' => ['required'],
             'last_name' => ['required'],
             'username' => ['required'],
-            'email' => ['required'],
-            'no_telp' => ['required'],
+            // 'email' => ['required'],
+            // 'no_telp' => ['required'],
             'password' => ['required', 'min:8'],
         ]);
 
@@ -108,8 +108,8 @@ class DashboardPetugasController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'username' => $request->username,
-                'email' => $request->email,
-                'no_telp' => $request->no_telp,
+                // 'email' => $request->email,
+                // 'no_telp' => $request->no_telp,
                 'password' => $request->password,
                 'updated_at' => now(),
             ]);
@@ -118,8 +118,8 @@ class DashboardPetugasController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'username' => $request->username,
-                'email' => $request->email,
-                'no_telp' => $request->no_telp,
+                // 'email' => $request->email,
+                // 'no_telp' => $request->no_telp,
                 'password' => $request->password,
                 'updated_at' => now(),
             ]);
