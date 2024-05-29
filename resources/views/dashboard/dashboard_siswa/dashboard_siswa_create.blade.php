@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-12 mb-3">
           <label for="kelas" class="form-label">Kelas</label>
           <select class="form-select @error('kelas') is-invalid @enderror" aria-label="Select kelas" id="kelas" name="kelas" value="" required @required(true)>
@@ -74,9 +74,9 @@
             </div>
           @enderror
         </div>
-      </div>
+      </div> --}}
       <div class="row">
-        <div class="col-12 col-md-4 col-lg-4 mb-3">
+        {{-- <div class="col-12 col-md-4 col-lg-4 mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" minlength="11" aria-describedby="emailHelp" value="{{ old('email') }}" required @required(true)>
           @error('email')
@@ -93,8 +93,9 @@
               {{ $message }}
             </div>
           @enderror
-        </div>
-        <div class="col-12 col-md-4 col-lg-4 mb-3">
+        </div> --}}
+        <div class="col-12 mb-3">
+        {{-- <div class="col-12 col-md-4 col-lg-4 mb-3"> --}}
           <label for="password" class="form-label">Password</label>
           <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" minlength="8" aria-describedby="passwordHelp" value="{{ old('password') }}" required @required(true)>
           <div id="passwordHelp" class="form-text">

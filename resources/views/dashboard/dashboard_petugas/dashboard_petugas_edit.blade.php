@@ -79,8 +79,8 @@
             </div>
           @enderror
         </div> --}}
+        <div class="col-12 mb-3">
         {{-- <div class="col-12 col-md-4 col-lg-4 mb-3"> --}}
-        <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" minlength="8" aria-describedby="passwordHelp" value="" required @required(true)>
           <div id="passwordHelp" class="form-text">

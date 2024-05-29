@@ -100,8 +100,8 @@ Route::middleware('auth')->group(function () {
         // Route::get('/siswa', function () {
         //     return view('siswa.dashboard');
         // })->name('siswa.dashboard');
-        Route::get('/profil', function () {
-            return view('siswa.profil');
-        })->name('siswa.profil');
+        Route::get('/peminjaman', function () {
+            return view('siswa.peminjaman');
+        })->name('siswa.peminjaman');
     });
 });

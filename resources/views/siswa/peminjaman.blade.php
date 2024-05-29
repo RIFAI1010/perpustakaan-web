@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +9,8 @@
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
     <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+
     <style>
 
 
@@ -55,8 +57,8 @@
                                 <span class="hide-menu">peminjaman</span>
                             </a>
                         </li>
-                        
-                       
+
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -113,7 +115,8 @@
                                         </a>
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
-                                            <button class="btn btn-outline-primary mx-3 mt-2 d-block" type="submit">Logout</button>
+                                            <button class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                                type="submit">Logout</button>
                                         </form>
                                         {{-- <a href="./authentication-login.html"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a> --}}
@@ -131,43 +134,12 @@
                         <div class="card w-100">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                                    <div class="mb-3 mb-sm-0">
-                                        <h4 class="fw-semibold">Kategori</h4>
-                                    </div>
-                                    <div>
-                                        <!-- beetwen hole -->
-                                    </div>
+                                    <button type="button" class="btn btn-primary m-1 flex-grow-1">Dipinjam</button>
+                                    <button type="button" class="btn btn-light m-1 text-primary flex-grow-1">Kembalikan</button>
+                                    <button type="button" class="btn btn-light m-1 text-primary flex-grow-1">Rating</button>
                                 </div>
-                                <div class="scrollable-y mb-9 pb-2" id="scrollable-card" style="">
-                                    <button type="button" class="btn btn-primary mx-2 d-inline-block">Button 1</button>
-                                    @for ($i = 1; $i <= 15; $i++) <button type="button"
-                                        class="btn btn-outline-primary mx-2 d-inline-block">Button 2</button>
-                                        @endfor
-                                </div>
-                                <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
-                                    @for ($i = 1; $i <= 8; $i++) <div class="col-sm-6 col-md-2">
-                                        <div class="overflow-hidden rounded-2 mx-3 shadow">
-                                            <div class="position-relative">
-                                                <a href="javascript:void(0)">
-                                                    <img src="../assets/images/products/s4.jpg"
-                                                        class="card-img-top rounded-0" alt="...">
-                                                </a>
-                                                <a href="#"
-                                                    class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
-                                                    style="width: 32px; height: 32px;">
-                                                    <i class="bi bi-heart fs-4"></i>
-                                                </a>
-                                            </div>
-                                            <div class="card-body pt-3 p-2">
-                                                <h6 class="fw-semibold fs-3">Boat Headphone</h6>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="fw-semibold fs-2 mb-0">$50</h6>
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                @endfor
+                              
                             </div>
                         </div>
                     </div>
