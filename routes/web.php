@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardBukuController;
 use App\Http\Controllers\DashboardDendaController;
 use App\Http\Controllers\DashboardSiswaController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\DashboardPenyetujuanPeminjamanController;
 use App\Http\Controllers\DashboardPenyetujuanPengembalianController;
 use App\Http\Controllers\DashboardLaporanTransaksiPeminjamanBukuController;
 use App\Http\Controllers\DashboardLaporanPeminjamanBukuBerlangsungController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +30,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+
 
 Route::resource('/dashboard_buku', DashboardBukuController::class);
 
@@ -61,3 +58,50 @@ Route::delete('/dashboard_denda/diterima/{id}', [DashboardDendaController::class
 
 Route::get('/dashboard_laporan_peminjaman_berlangsung', [DashboardLaporanPeminjamanBukuBerlangsungController::class, 'index']);
 Route::get('/dashboard_transaksi_peminjaman', [DashboardLaporanTransaksiPeminjamanBukuController::class, 'index']);
+
+
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function () {
+    // Route::get('/dashboard', function () {
+    //     $role = auth()->user()->role;
+    //     if ($role === 'admin') {
+    //         return redirect()->route('admin.dashboard');
+    //     } elseif ($role === 'petugas') {
+    //         return redirect()->route('petugas.dashboard');
+    //     } elseif ($role === 'siswa') {
+    //         return redirect()->route('siswa.dashboard');
+    //     }
+    //     return abort(403, 'Unauthorized action.');
+    // })->name('dashboard');
+    Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard');
+
+    
+
+    Route::middleware('role:admin')->group(function () {
+        // Route::get('/admin', function () {
+        //     return view('admin.dashboard');
+        // })->name('admin.dashboard');
+    });
+
+    Route::middleware('role:staff')->group(function () {
+        // Route::get('/petugas', function () {
+        //     return view('petugas.dashboard');
+        // })->name('petugas.dashboard');
+    });
+
+    Route::middleware('role:siswa')->group(function () {
+        // Route::get('/siswa', function () {
+        //     return view('siswa.dashboard');
+        // })->name('siswa.dashboard');
+        Route::get('/peminjaman', function () {
+            return view('siswa.peminjaman');
+        })->name('siswa.peminjaman');
+    });
+});

@@ -24,21 +24,32 @@
                                     <h2>Perpustakaan</h2>
                                 </a>
                                 <p class="text-center">pinjam beli buku</p>
-                                <form>
+                                <form action="{{ route('login') }}" method="POST">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                        <input type="text" name="username" class="form-control" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
+                                        @error('username')
+                                        <div class="form-text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                        @error('password')
+                                        <div class="form-text text-danger">{{ $message }}</div>
+                                        @enderror
+                                        @if (session('error'))
+                                        <div class="form-text text-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                        @endif
                                     </div>
-                                  
-                                    <a href="./dashboard" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign
-                                        In</a>
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign
+                                        In</button>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-bold">New to Modernize?</p>
+                                        <p class="fs-4 mb-0 fw-bold">Belum punya akun</p>
                                         <a class="text-primary fw-bold ms-2"
                                             href="./authentication-register.html">Create an account</a>
                                     </div>

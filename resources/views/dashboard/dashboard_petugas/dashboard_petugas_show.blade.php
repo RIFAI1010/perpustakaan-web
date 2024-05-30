@@ -63,7 +63,7 @@
           <h6>Username: {{ $petugas->username }}</h6>
           <h6>Email: {{ $petugas->email }}</h6>
           <h6>No Telp: {{ $petugas->no_telp }}</h6>
-          <h6>Password: {{ $petugas->password }}</h6>
+          <h6>Password:</h6>
           <h6>Role: {{ $petugas->role }}</h6>
         </div>
       </div>
