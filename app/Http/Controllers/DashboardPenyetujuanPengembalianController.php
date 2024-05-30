@@ -73,7 +73,6 @@ class DashboardPenyetujuanPengembalianController extends Controller
 
         $laporanTransaksiPeminjamanBerlangsung->update([
             'denda' => $request->jumlah_denda,
-            'status_pembayaran_denda' => 0,
             'updated_at' => now(),
         ]);
 
