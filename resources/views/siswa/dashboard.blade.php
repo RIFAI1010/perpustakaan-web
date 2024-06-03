@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,11 +9,45 @@
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
     <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+
     <style>
+        .scrollable-y {
+            overflow-x: auto;
+            white-space: nowrap;
+            --sb-track-color: #00000000;
+            --sb-thumb-color: #cfcfcf;
+            --sb-size: 5px;
+            scroll-behavior: smooth;
 
+        }
 
+        .scrollable-y::-webkit-scrollbar {
+            height: var(--sb-size)
+        }
 
+        .scrollable-y::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 4px;
+        }
+
+        .scrollable-y::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 4px;
+
+        }
+
+        @supports not selector(::-webkit-scrollbar) {
+            .scrollable-y {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
+        }
+
+        .text-truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 
@@ -55,8 +90,8 @@
                                 <span class="hide-menu">peminjaman</span>
                             </a>
                         </li>
-                        
-                       
+
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -113,7 +148,8 @@
                                         </a>
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
-                                            <button class="btn btn-outline-primary mx-3 mt-2 d-block" type="submit">Logout</button>
+                                            <button class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                                type="submit">Logout</button>
                                         </form>
                                         {{-- <a href="./authentication-login.html"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a> --}}
@@ -126,6 +162,46 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                    <div class="mb-3 mb-sm-0">
+                        <h4 class="fw-semibold">Populer</h4>
+                    </div>
+                    <div>
+                        <i class="bi bi-arrow-right-circle" style="font-size: 30px"></i>
+                    </div>
+                </div>
+                <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4">
+                    @foreach($bukus as $bukusa)
+                    <div class="col-md-4 px-2 mb-2">
+                        <div class="card m-0" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ asset("storage/buku/$bukusa->image") }}" class="card-img"
+                                        alt="Image 1">
+
+                                </div>
+                                <div class="col-md-8">
+
+                                    <div class="card-body p-3">
+                                        <h5 class="card-title text-truncate">{{ $bukusa->judul }}</h5>
+                                        <p class="card-text text-truncate">This is a longer card with supporting text
+                                            below as a
+                                        </p>
+                                        <a href="#"
+                                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute"
+                                            style="width: 32px; height: 32px;">
+                                            <i class="bi bi-heart fs-4"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <!--<div class="row row-cols-1 row-cols-md-3 g-4"></div>-->
                 <div class="row">
                     <div class="col-12">
                         <div class="card w-100">
@@ -138,41 +214,100 @@
                                         <!-- beetwen hole -->
                                     </div>
                                 </div>
-                                <div class="scrollable-y mb-9 pb-2" id="scrollable-card" style="">
-                                    @foreach($categories as $category) <button type="button"
-                                        class="btn btn-outline-primary mx-2 d-inline-block">{{ $category->nama }}</button>
+                                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                                    <div class="mb-3 mb-sm-0">
+                                        
+                                            <i id="left" class="bi bi-arrow-left mx-2 text-primary" style="font-size: 30px"></i>
+                                        
+                                    </div>
+                                    <div class="scrollable-y" id="scrollable-button" style="overflow: hidden; width: 100%">
+                                        @foreach($categories as $category)
+                                        <button type="button"
+                                            class="btn btn-outline-primary mx-2 d-inline-block">{{ $category->nama }}</button>
                                         @endforeach
+                                    </div>
+                                    <div>                                       
+                                            <i id="right" class="bi bi-arrow-right mx-2 text-primary" style="font-size: 30px"></i>
+                                    </div>
                                 </div>
+                                
                                 <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
-                                    @for ($i = 1; $i <= 8; $i++) <div class="col-sm-6 col-md-2">
+                                    @foreach($bukus as $bukus)
+                                    {{-- <div class="col-sm-6 col-lg-2">
                                         <div class="overflow-hidden rounded-2 mx-3 shadow">
                                             <div class="position-relative">
                                                 <a href="javascript:void(0)">
-                                                    <img src="../assets/images/products/s4.jpg"
-                                                        class="card-img-top rounded-0" alt="...">
-                                                </a>
-                                                <a href="#"
-                                                    class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
-                                                    style="width: 32px; height: 32px;">
-                                                    <i class="bi bi-heart fs-4"></i>
-                                                </a>
-                                            </div>
-                                            <div class="card-body pt-3 p-2">
-                                                <h6 class="fw-semibold fs-3">Boat Headphone</h6>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="fw-semibold fs-2 mb-0">$50</h6>
-
-                                                </div>
-                                            </div>
-                                        </div>
+                                                    <img src="{{ asset("storage/buku/$bukus->image") }}"
+                                    class="card-img-top rounded-0" alt="{{ $bukus->judul }}">
+                                    </a>
+                                    <a href="#"
+                                        class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-heart fs-4"></i>
+                                    </a>
                                 </div>
-                                @endfor
+                                <div class="card-body pt-3 p-2">
+                                    <h5 class="fw-semibold fs-3">{{ $bukus->judul }}</h5>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <p class="fw-semibold fs-2 mb-1">$50</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <!---->
+                        <div class="col-sm-6 col-lg-2">
+                            <div class="card overflow-hidden rounded-2 mx-3 shadow">
+                                <div class="position-relative">
+                                    <img src="{{ asset("storage/buku/$bukus->image") }}" class="card-img-top"
+                                        alt="Image 1">
+                                    <a href="#"
+                                        class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-heart fs-4"></i>
+                                    </a>
+                                </div>
+
+                                <div class="card-body p-2">
+                                    <h5 class="card-title">Cote</h5>
+                                    <p class="card-text">
+                                        {{ $bukus->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                    </p>
+
+                                </div>
+
                             </div>
                         </div>
+                        <div class="col-sm-6 col-lg-2">
+                            <div class="card overflow-hidden rounded-2 mx-3 shadow">
+                                <div class="position-relative">
+                                    <img src="{{ asset("storage/buku/$bukus->image") }}" class="card-img-top"
+                                        alt="Image 1">
+                                    <a href="#"
+                                        class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-heart fs-4"></i>
+                                    </a>
+                                </div>
+
+                                <div class="card-body p-2">
+                                    <h5 class="card-title">Cote</h5>
+                                    <p class="card-text">
+                                        {{ $bukus->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
@@ -181,13 +316,17 @@
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script>
-        const scrollableCard = document.getElementById('scrollable-card');
-        scrollableCard.addEventListener('wheel', (event) => {
-            if (event.deltaY !== 0) {
-                event.preventDefault();
-                scrollableCard.scrollLeft += event.deltaY;
-            }
+      
+
+        const scrollableButton = document.getElementById('scrollable-button');
+        document.getElementById("left").addEventListener("click", function () {
+            scrollableButton.scrollLeft -= 100;
         });
+        document.getElementById("right").addEventListener("click", function () {
+            scrollableButton.scrollLeft += 100;
+        });
+
+
         const scrollableCover = document.getElementById('scrollable-cover');
         scrollableCover.addEventListener('wheel', (event) => {
             if (event.deltaY !== 0) {
