@@ -172,22 +172,12 @@
                 </div>
                 <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4">
                     @foreach($bukus as $buku)
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            var populerDivs = document.querySelectorAll("#{{$buku->slug}}");
-                            populerDivs.forEach(function (div) {
-                                div.addEventListener("click", function () {
-                                    window.location.href = "{{ $buku->slug }}";
-                                });
-                            });
-                        });
-                    </script>
                     <div class="col-md-4 px-2 mb-2">
                         <div class="card m-0" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
-                                        alt="Image 1">
+                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}"
+                                        class="card-img" alt="Image 1">
 
                                 </div>
                                 <div class="col-md-8">
@@ -271,8 +261,8 @@
                         <div class="col-sm-6 col-lg-2">
                             <div class="card overflow-hidden rounded-2 mx-3 shadow">
                                 <div class="position-relative">
-                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}" class="card-img-top"
-                                        alt="{{ $buku->judul }}">
+                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}"
+                                        class="card-img-top" alt="{{ $buku->judul }}">
                                     <a href="#"
                                         class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
                                         style="width: 32px; height: 32px;">
@@ -314,6 +304,17 @@
         document.getElementById("right").addEventListener("click", function () {
             scrollableButton.scrollLeft += 100;
         });
+
+        @foreach($bukus as $buku)
+        document.addEventListener("DOMContentLoaded", function () {
+            var populerDivs = document.querySelectorAll("#{{$buku->slug}}");
+            populerDivs.forEach(function (div) {
+                div.addEventListener("click", function () {
+                    window.location.href = "{{ $buku->slug }}";
+                });
+            });
+        });
+        @endforeach
 
 
         const scrollableCover = document.getElementById('scrollable-cover');
