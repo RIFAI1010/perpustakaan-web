@@ -171,21 +171,30 @@
                     </div>
                 </div>
                 <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4">
-                    @foreach($bukus as $bukusa)
+                    @foreach($bukus as $buku)
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var populerDivs = document.querySelectorAll("#{{$buku->slug}}");
+                            populerDivs.forEach(function (div) {
+                                div.addEventListener("click", function () {
+                                    window.location.href = "{{ $buku->slug }}";
+                                });
+                            });
+                        });
+                    </script>
                     <div class="col-md-4 px-2 mb-2">
                         <div class="card m-0" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="{{ asset("storage/buku/$bukusa->image") }}" class="card-img"
+                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
                                         alt="Image 1">
 
                                 </div>
                                 <div class="col-md-8">
 
                                     <div class="card-body p-3">
-                                        <h5 class="card-title text-truncate">{{ $bukusa->judul }}</h5>
-                                        <p class="card-text text-truncate">This is a longer card with supporting text
-                                            below as a
+                                        <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                                        <p class="card-text text-truncate">{{ $buku->deskripsi }}
                                         </p>
                                         <a href="#"
                                             class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute"
@@ -216,29 +225,32 @@
                                 </div>
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                                     <div class="mb-3 mb-sm-0">
-                                        
-                                            <i id="left" class="bi bi-arrow-left mx-2 text-primary" style="font-size: 30px"></i>
-                                        
+
+                                        <i id="left" class="bi bi-caret-left-fill mx-2 text-primary"
+                                            style="font-size: 30px; cursor: pointer;"></i>
+
                                     </div>
-                                    <div class="scrollable-y" id="scrollable-button" style="overflow: hidden; width: 100%">
+                                    <div class="scrollable-y" id="scrollable-button"
+                                        style="overflow: hidden; width: 100%">
                                         @foreach($categories as $category)
                                         <button type="button"
                                             class="btn btn-outline-primary mx-2 d-inline-block">{{ $category->nama }}</button>
                                         @endforeach
                                     </div>
-                                    <div>                                       
-                                            <i id="right" class="bi bi-arrow-right mx-2 text-primary" style="font-size: 30px"></i>
+                                    <div>
+                                        <i id="right" class="bi bi-caret-right-fill mx-2 text-primary"
+                                            style="font-size: 30px; cursor: pointer;"></i>
                                     </div>
                                 </div>
-                                
+
                                 <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
-                                    @foreach($bukus as $bukus)
+                                    @foreach($bukus as $buku)
                                     {{-- <div class="col-sm-6 col-lg-2">
                                         <div class="overflow-hidden rounded-2 mx-3 shadow">
                                             <div class="position-relative">
                                                 <a href="javascript:void(0)">
-                                                    <img src="{{ asset("storage/buku/$bukus->image") }}"
-                                    class="card-img-top rounded-0" alt="{{ $bukus->judul }}">
+                                                    <img src="{{ asset("storage/buku/$buku->image") }}"
+                                    class="card-img-top rounded-0" alt="{{ $buku->judul }}">
                                     </a>
                                     <a href="#"
                                         class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
@@ -247,7 +259,7 @@
                                     </a>
                                 </div>
                                 <div class="card-body pt-3 p-2">
-                                    <h5 class="fw-semibold fs-3">{{ $bukus->judul }}</h5>
+                                    <h5 class="fw-semibold fs-3">{{ $buku->judul }}</h5>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <p class="fw-semibold fs-2 mb-1">$50</p>
 
@@ -259,8 +271,8 @@
                         <div class="col-sm-6 col-lg-2">
                             <div class="card overflow-hidden rounded-2 mx-3 shadow">
                                 <div class="position-relative">
-                                    <img src="{{ asset("storage/buku/$bukus->image") }}" class="card-img-top"
-                                        alt="Image 1">
+                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}" class="card-img-top"
+                                        alt="{{ $buku->judul }}">
                                     <a href="#"
                                         class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
                                         style="width: 32px; height: 32px;">
@@ -269,37 +281,16 @@
                                 </div>
 
                                 <div class="card-body p-2">
-                                    <h5 class="card-title">Cote</h5>
-                                    <p class="card-text">
-                                        {{ $bukus->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                    <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                                    <p class="card-text text-truncate">
+                                        {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
                                     </p>
 
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-2">
-                            <div class="card overflow-hidden rounded-2 mx-3 shadow">
-                                <div class="position-relative">
-                                    <img src="{{ asset("storage/buku/$bukus->image") }}" class="card-img-top"
-                                        alt="Image 1">
-                                    <a href="#"
-                                        class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-heart fs-4"></i>
-                                    </a>
-                                </div>
 
-                                <div class="card-body p-2">
-                                    <h5 class="card-title">Cote</h5>
-                                    <p class="card-text">
-                                        {{ $bukus->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                                    </p>
-
-                                </div>
-
-                            </div>
-                        </div>
                         @endforeach
 
                     </div>
@@ -316,8 +307,6 @@
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script>
-      
-
         const scrollableButton = document.getElementById('scrollable-button');
         document.getElementById("left").addEventListener("click", function () {
             scrollableButton.scrollLeft -= 100;
