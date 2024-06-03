@@ -59,7 +59,7 @@
             <td>{{ $buku->id ?? 'Tidak diketahui'}}</td>
             <td>
               <div class="d-flex justify-content-center" style="max-width: 150px; height: 120px;">
-                <img class="mx-auto mh-100" src="{{ asset("storage/buku/$buku->image") }}" alt="{{ $buku->judul }}">
+                <img class="mx-auto mh-100" src="{{ asset('/storage/buku/'. $buku->image) }}" alt="{{ $buku->judul }}">
               </div>
             </td>
             <td>
