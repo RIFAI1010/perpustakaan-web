@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Buku;
 use Illuminate\Support\Facades\DB;
+
 
 class AuthController extends Controller
 {
@@ -46,8 +48,9 @@ class AuthController extends Controller
             case 'siswa': {
                 $categories = Category::all();
                 return view('siswa.dashboard', [
-                        'categories' => DB::table('categories')->get(),
-                        'bukus' => DB::table('bukus')->get(),
+                        'categories' => Category::all(),
+                        'category_buku' => DB::table('category_buku')->get(),
+                        'bukus' => Buku::all(),
                     ]);
             }
                 

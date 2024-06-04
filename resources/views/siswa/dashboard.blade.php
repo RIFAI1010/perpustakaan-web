@@ -31,7 +31,7 @@
             border-radius: 4px;
         }
 
-        .scrollable-y::-webkit-scrollbar-thumb {
+        .scrollable-y::j-webkit-scrollbar-thumb {
             background: var(--sb-thumb-color);
             border-radius: 4px;
 
@@ -170,14 +170,17 @@
                         <i class="bi bi-arrow-right-circle" style="font-size: 30px"></i>
                     </div>
                 </div>
-                <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4">
-                    @foreach($bukus as $buku)
-                    <div class="col-md-4 px-2 mb-2">
+                <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4" id="scrollable-card">
+                    @forelse($bukus as $buku)
+                    <div class="col-md-4 mx-3 mb-2">
                         <div class="card m-0" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}"
-                                        class="card-img" alt="Image 1">
+                                    <a href="/dashboard/{{ $buku->slug }}">
+                                        <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
+                                            alt="Image 1">
+                                    </a>
+
 
                                 </div>
                                 <div class="col-md-8">
@@ -198,7 +201,11 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+
+                    <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data buku</b></div>
+
+                    @endforelse
                 </div>
                 <!--<div class="row row-cols-1 row-cols-md-3 g-4"></div>-->
                 <div class="row">
@@ -223,7 +230,7 @@
                                     <div class="scrollable-y" id="scrollable-button"
                                         style="overflow: hidden; width: 100%">
                                         @foreach($categories as $category)
-                                        <button type="button"
+                                        <button onclick="categoryShowHide({{ $category->id }})" id="category-button-{{ $category->id }}" type="button"
                                             class="btn btn-outline-primary mx-2 d-inline-block">{{ $category->nama }}</button>
                                         @endforeach
                                     </div>
@@ -234,7 +241,7 @@
                                 </div>
 
                                 <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
-                                    @foreach($bukus as $buku)
+                                    @forelse($bukus as $buku)
                                     {{-- <div class="col-sm-6 col-lg-2">
                                         <div class="overflow-hidden rounded-2 mx-3 shadow">
                                             <div class="position-relative">
@@ -258,35 +265,70 @@
                             </div>
                         </div> --}}
                         <!---->
-                        <div class="col-sm-6 col-lg-2">
+
+                        {{-- <div class="col-sm-6 col-lg-2">
                             <div class="card overflow-hidden rounded-2 mx-3 shadow">
                                 <div class="position-relative">
                                     <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}"
-                                        class="card-img-top" alt="{{ $buku->judul }}">
-                                    <a href="#"
-                                        class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-heart fs-4"></i>
-                                    </a>
-                                </div>
+                        class="card-img-top" alt="{{ $buku->judul }}">
+                        <a href="#"
+                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
+                            style="width: 32px; height: 32px;">
+                            <i class="bi bi-heart fs-4"></i>
+                        </a>
+                    </div>
 
-                                <div class="card-body p-2">
-                                    <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
-                                    <p class="card-text text-truncate">
-                                        {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                                    </p>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        @endforeach
+                    <div class="card-body p-2">
+                        <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                        <p class="card-text text-truncate">
+                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                        </p>
 
                     </div>
+
+                </div>
+            </div> --}}
+
+
+            <div class="col-sm-6 col-lg-2 " id="category-display-{{ $buku->category()->get()[0]->id}}">
+                <div class="card overflow-hidden rounded-2 mx-3 shadow">
+                    <div class="position-relative">
+                        <a href="/dashboard/{{ $buku->slug }}"><img src="{{ asset("storage/buku/$buku->image") }}"
+                                class="card-img-top" alt="{{ $buku->judul }}">
+                        </a>
+
+                        <a href="#"
+                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
+                            style="width: 32px; height: 32px;">
+                            <i class="bi bi-heart fs-4"></i>
+                        </a>
+                    </div>
+
+                    <div class="card-body p-2">
+                        <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                        <p class="card-text text-truncate">
+                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                        </p>
+
+                    </div>
+
                 </div>
             </div>
+
+
+<div style="width: 100%; height: 100px; align-content: center; text-align: center; display: none;" id="catch"><b>Tidak ada data untuk kategori ini</b>
+            </div>
+            @empty
+
+            <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data buku</b>
+            </div>
+
+            @endforelse
+
         </div>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
     </div>
@@ -305,16 +347,31 @@
             scrollableButton.scrollLeft += 100;
         });
 
-        @foreach($bukus as $buku)
-        document.addEventListener("DOMContentLoaded", function () {
-            var populerDivs = document.querySelectorAll("#{{$buku->slug}}");
-            populerDivs.forEach(function (div) {
-                div.addEventListener("click", function () {
-                    window.location.href = "{{ $buku->slug }}";
-                });
-            });
-        });
-        @endforeach
+
+
+
+        function categoryShowHide(id) {
+            @foreach($categories as $category)
+            try {
+                document.getElementById("category-display-{{ $category->id }}").style.display = "none";
+            } catch (error) {}
+            @endforeach
+            try {
+                document.getElementById("catch").style.display = "none";
+                document.getElementById(`category-display-` + id + ``).style.display = "block";
+            } catch (error) {
+                document.getElementById("catch").style.display = "block";
+            }
+            $(document).ready(function () {
+                @foreach($categories as $category)
+                $("#category-button-{{ $category->id }}").removeClass("btn-primary text-white");
+                @endforeach
+                $(`#category-button-`+id+``).addClass("btn-primary text-white");
+            })
+        }
+
+
+
 
 
         const scrollableCover = document.getElementById('scrollable-cover');
@@ -322,6 +379,15 @@
             if (event.deltaY !== 0) {
                 event.preventDefault();
                 scrollableCover.scrollLeft += event.deltaY;
+            }
+        });
+
+
+        const scrollableCard = document.getElementById('scrollable-card');
+        scrollableCard.addEventListener('wheel', (event) => {
+            if (event.deltaY !== 0) {
+                event.preventDefault();
+                scrollableCard.scrollLeft += event.deltaY;
             }
         });
     </script>
