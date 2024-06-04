@@ -7,7 +7,6 @@
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
-    <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
 
@@ -203,7 +202,8 @@
                     </div>
                     @empty
 
-                    <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data buku</b></div>
+                    <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data
+                            buku</b></div>
 
                     @endforelse
                 </div>
@@ -230,7 +230,8 @@
                                     <div class="scrollable-y" id="scrollable-button"
                                         style="overflow: hidden; width: 100%">
                                         @foreach($categories as $category)
-                                        <button onclick="categoryShowHide({{ $category->id }})" id="category-button-{{ $category->id }}" type="button"
+                                        <button onclick="categoryShowHide({{ $category->id }})"
+                                            id="category-button-{{ $category->id }}" type="button"
                                             class="btn btn-outline-primary mx-2 d-inline-block">{{ $category->nama }}</button>
                                         @endforeach
                                     </div>
@@ -290,7 +291,7 @@
             </div> --}}
 
 
-            <div class="col-sm-6 col-lg-2 " id="category-display-{{ $buku->category()->get()[0]->id}}">
+            <div class="col-sm-6 col-lg-2 category-display-{{ $buku->category()->get()[0]->id}}" id="category-display-{{ $buku->category()->get()[0]->id}}">
                 <div class="card overflow-hidden rounded-2 mx-3 shadow">
                     <div class="position-relative">
                         <a href="/dashboard/{{ $buku->slug }}"><img src="{{ asset("storage/buku/$buku->image") }}"
@@ -316,11 +317,13 @@
             </div>
 
 
-<div style="width: 100%; height: 100px; align-content: center; text-align: center; display: none;" id="catch"><b>Tidak ada data untuk kategori ini</b>
+            <div style="width: 100%; height: 100px; align-content: center; text-align: center; display: none;"
+                id="catch"><b>Tidak ada data untuk kategori ini</b>
             </div>
             @empty
 
-            <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data buku</b>
+            <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data
+                    buku</b>
             </div>
 
             @endforelse
@@ -349,24 +352,27 @@
 
 
 
+        $(window).on('load', function () {
+            categoryShowHide(1)
+        });
 
         function categoryShowHide(id) {
-            @foreach($categories as $category)
-            try {
-                document.getElementById("category-display-{{ $category->id }}").style.display = "none";
-            } catch (error) {}
-            @endforeach
-            try {
-                document.getElementById("catch").style.display = "none";
-                document.getElementById(`category-display-` + id + ``).style.display = "block";
-            } catch (error) {
-                document.getElementById("catch").style.display = "block";
-            }
             $(document).ready(function () {
+                @foreach($categories as $category)
+                $(".category-display-{{ $category->id }}").css("display", "none");
+                @endforeach
+                document.getElementById("catch").style.display = "none";
+                $(`.category-display-` + id + ``).css("display", "block")
+                // trycatch untuk message data tidak ada
+                try {
+                    document.getElementById(`category-display-`+ id +``).style.display = "block";
+                } catch (error) {
+                    document.getElementById("catch").style.display = "block";
+                }
                 @foreach($categories as $category)
                 $("#category-button-{{ $category->id }}").removeClass("btn-primary text-white");
                 @endforeach
-                $(`#category-button-`+id+``).addClass("btn-primary text-white");
+                $(`#category-button-` + id + ``).addClass("btn-primary text-white");
             })
         }
 
