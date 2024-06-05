@@ -15,12 +15,48 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            'nama' => 'Kisah Sedih',
-            'slug' => 'kisah_sedih',
+            'nama' => 'Action',
+            'slug' => 'action',
         ]);
         DB::table('categories')->insert([
-            'nama' => 'sci-fi',
+            'nama' => 'Comedy',
+            'slug' => 'comedy',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Drama',
+            'slug' => 'drama',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Fantasy',
+            'slug' => 'fantasi',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Sci-Fi',
             'slug' => 'sci_fi',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Music',
+            'slug' => 'music',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Romance',
+            'slug' => 'romance',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'School',
+            'slug' => 'school',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Slice Of Life',
+            'slug' => 'slice_of_life',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Horror',
+            'slug' => 'horror',
+        ]);
+        DB::table('categories')->insert([
+            'nama' => 'Mystery',
+            'slug' => 'mystery',
         ]);
     }
 }

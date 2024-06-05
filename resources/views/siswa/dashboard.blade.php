@@ -163,7 +163,7 @@
             <div class="container-fluid">
                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                     <div class="mb-3 mb-sm-0">
-                        <h4 class="fw-semibold">Populer</h4>
+                        <h4 class="fw-semibold">Buku</h4>
                     </div>
                     <div>
                         <i class="bi bi-arrow-right-circle" style="font-size: 30px"></i>
@@ -350,10 +350,8 @@
             scrollableButton.scrollLeft += 100;
         });
 
-
-
         $(window).on('load', function () {
-            categoryShowHide(1)
+            categoryShowHide({{ $buku->category()->get()[0]->id }})
         });
 
         function categoryShowHide(id) {
@@ -376,10 +374,6 @@
             })
         }
 
-
-
-
-
         const scrollableCover = document.getElementById('scrollable-cover');
         scrollableCover.addEventListener('wheel', (event) => {
             if (event.deltaY !== 0) {
@@ -387,7 +381,6 @@
                 scrollableCover.scrollLeft += event.deltaY;
             }
         });
-
 
         const scrollableCard = document.getElementById('scrollable-card');
         scrollableCard.addEventListener('wheel', (event) => {
