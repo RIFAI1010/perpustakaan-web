@@ -163,7 +163,7 @@
             <div class="container-fluid">
                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                     <div class="mb-3 mb-sm-0">
-                        <h4 class="fw-semibold">Populer</h4>
+                        <h4 class="fw-semibold">Buku</h4>
                     </div>
                     <div>
                         <i class="bi bi-arrow-right-circle" style="font-size: 30px"></i>
@@ -175,7 +175,7 @@
                         <div class="card m-0" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <a href="/dashboard/{{ $buku->slug }}">
+                                    <a href="/detail/{{ $buku->slug }}">
                                         <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
                                             alt="Image 1">
                                     </a>
@@ -189,10 +189,13 @@
                                         <p class="card-text text-truncate">{{ $buku->deskripsi }}
                                         </p>
                                         <a href="#"
-                                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute"
+                                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
                                             style="width: 32px; height: 32px;">
                                             <i class="bi bi-heart fs-4"></i>
                                         </a>
+                                        <p class="card-text text-truncate mt-3">
+                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                        </p>
                                     </div>
 
                                 </div>
@@ -243,58 +246,12 @@
 
                                 <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
                                     @forelse($bukus as $buku)
-                                    {{-- <div class="col-sm-6 col-lg-2">
-                                        <div class="overflow-hidden rounded-2 mx-3 shadow">
-                                            <div class="position-relative">
-                                                <a href="javascript:void(0)">
-                                                    <img src="{{ asset("storage/buku/$buku->image") }}"
-                                    class="card-img-top rounded-0" alt="{{ $buku->judul }}">
-                                    </a>
-                                    <a href="#"
-                                        class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-heart fs-4"></i>
-                                    </a>
-                                </div>
-                                <div class="card-body pt-3 p-2">
-                                    <h5 class="fw-semibold fs-3">{{ $buku->judul }}</h5>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <p class="fw-semibold fs-2 mb-1">$50</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!---->
-
-                        {{-- <div class="col-sm-6 col-lg-2">
-                            <div class="card overflow-hidden rounded-2 mx-3 shadow">
-                                <div class="position-relative">
-                                    <img id="{{$buku->slug}}" src="{{ asset("storage/buku/$buku->image") }}"
-                        class="card-img-top" alt="{{ $buku->judul }}">
-                        <a href="#"
-                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
-                            style="width: 32px; height: 32px;">
-                            <i class="bi bi-heart fs-4"></i>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-2">
-                        <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
-                        <p class="card-text text-truncate">
-                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                        </p>
-
-                    </div>
-
-                </div>
-            </div> --}}
 
 
             <div class="col-sm-6 col-lg-2 category-display-{{ $buku->category()->get()[0]->id}}" id="category-display-{{ $buku->category()->get()[0]->id}}">
                 <div class="card overflow-hidden rounded-2 mx-3 shadow">
                     <div class="position-relative">
-                        <a href="/dashboard/{{ $buku->slug }}"><img src="{{ asset("storage/buku/$buku->image") }}"
+                        <a href="/detail/{{ $buku->slug }}"><img src="{{ asset("storage/buku/$buku->image") }}"
                                 class="card-img-top" alt="{{ $buku->judul }}">
                         </a>
 
@@ -350,10 +307,8 @@
             scrollableButton.scrollLeft += 100;
         });
 
-
-
         $(window).on('load', function () {
-            categoryShowHide(1)
+            categoryShowHide({{ $buku->category()->get()[0]->id }})
         });
 
         function categoryShowHide(id) {
@@ -376,10 +331,6 @@
             })
         }
 
-
-
-
-
         const scrollableCover = document.getElementById('scrollable-cover');
         scrollableCover.addEventListener('wheel', (event) => {
             if (event.deltaY !== 0) {
@@ -387,7 +338,6 @@
                 scrollableCover.scrollLeft += event.deltaY;
             }
         });
-
 
         const scrollableCard = document.getElementById('scrollable-card');
         scrollableCard.addEventListener('wheel', (event) => {
