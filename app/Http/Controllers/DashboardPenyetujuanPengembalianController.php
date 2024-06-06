@@ -34,6 +34,7 @@ class DashboardPenyetujuanPengembalianController extends Controller
             'status_pengembalian' => $laporanTransaksiPeminjamanBerlangsung->status_pengembalian,
             'denda' => $laporanTransaksiPeminjamanBerlangsung->denda,
             'foto_buku_dikembalikan' => $laporanTransaksiPeminjamanBerlangsung->foto_buku_dikembalikan,
+            'created_at' => now(),
         ]);
 
         Buku::findOrFail($dataAntrian->buku_id)->update([
