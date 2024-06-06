@@ -47,8 +47,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard');
-    Route::get('/mengantri-peminjaman/{slug}', [TransaksiController::class, 'mengantri_peminjaman']);
-    
 
     Route::middleware('role:admin')->group(function () {
     });
@@ -79,7 +77,10 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:siswa')->group(function () {
         Route::resource('/detail', SiswaDashboardController::class);
-        Route::get('/peminjaman', function () { return view('siswa.peminjaman');
-    });
+        Route::get('/mengantri-peminjaman/{slug}', [TransaksiController::class, 'mengantri_peminjaman']);
+        Route::get('/mengantri-pengembalian/{slug}', [TransaksiController::class, 'mengantri_pengembalian']);
+        Route::get('/peminjaman', function () {
+            return view('siswa.peminjaman');
+        });
     });
 });

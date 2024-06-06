@@ -105,19 +105,18 @@ class TransaksiController extends Controller
 
         // check apakah user sudah ada di table user_mengantri_peminjaman_buku dengan idBuku sama
         if($tableUserMengantriPeminjamanBuku->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
-            return redirect()->route('')->with(['failed' => 'Anda sudah mengantri!']);
+            return redirect()->route('dashboard')->with(['failed' => 'Anda sudah mengantri!']);
         }
 
         // check apakah user sedang meminjam buku yg sama
         if(Buku::where('slug', $slug)->where('peminjam_id', $currentUser->id)->get()->count()){
-            return redirect()->route('')->with(['failed' => 'Anda sudah meminjam buku ini!']);
+            return redirect()->route('dashboard')->with(['failed' => 'Anda sudah meminjam buku ini!']);
         }
 
         // check apakah user sudah ada di table laporan_peminjaman_buku_berlangsung dengan idBuku sama
         if($tableLaporanPeminjamanBukuBerlangsung->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
-            return redirect()->route('')->with(['failed' => 'Mengantri peminjaman gagal!']);
+            return redirect()->route('dashboard')->with(['failed' => 'Mengantri peminjaman gagal!']);
         }
-        
 
         DB::table('user_mengantri_peminjaman_buku')->insert([
             'buku_id' => $buku->id,
@@ -140,50 +139,60 @@ class TransaksiController extends Controller
 
         // check apakah mengantri
         if($tableUserMengantriPeminjamanBuku->get()->count() == false){
-            return redirect()->route('')->with(['failed' => 'Anda tidak mengantri!']);
+            return redirect()->route('dashboard')->with(['failed' => 'Anda tidak mengantri!']);
         }
         
         $tableUserMengantriPeminjamanBuku->delete();
 
-        return redirect()->route('')->with(['success' => 'Berhasil membatalkan antrian!']);
+        return redirect()->route('dashboard')->with(['success' => 'Berhasil membatalkan antrian!']);
     }
 
-    // public function mengantri_pengembalian(Request $request, string $slug){
-    //     $currentUser = Auth::user();
-    //     $buku = Buku::where('slug', $slug)->firstOrFail();
-    //     $tableUserMengantriPengembalian = DB::table('user_mengantri_pengembalian_buku');
-    //     $tableLaporanPeminjamanBukuBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung');
-    //     $laporanPeminjamanBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung')->where('buku_id', $buku->id)
-    //         ->where('peminjam_id', $currentUser->id);
+    public function mengantri_pengembalian(Request $request, string $slug){
+        $currentUser = Auth::user();
+        $buku = Buku::where('slug', $slug)->firstOrFail();
+        $tableUserMengantriPengembalian = DB::table('user_mengantri_pengembalian_buku');
+        $tableLaporanPeminjamanBukuBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung');
+        $laporanPeminjamanBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung')->where('buku_id', $buku->id)
+            ->where('peminjam_id', $currentUser->id);
 
 
-    //     // check apakah user sudah ada di table user_mengantri_pengembalian_buku dengan idBuku sama
-    //     if($tableUserMengantriPengembalian->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
-    //         return redirect()->route('')->with(['failed' => 'Anda sudah mengantri!']);
-    //     }
+        // check apakah user sudah ada di table user_mengantri_pengembalian_buku dengan idBuku sama
+        if($tableUserMengantriPengembalian->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
+            return redirect()->route('dashboard')->with(['failed' => 'Anda sudah mengantri!']);
+        }
 
-    //     // check apakah user sudah ada di table laporan_peminjaman_buku_berlangsung dengan idBuku sama
-    //     if($tableLaporanPeminjamanBukuBerlangsung->get()->count() == false){
-            
-    //     }
+        // check apakah user sudah ada di table laporan_peminjaman_buku_berlangsung dengan idBuku sama
+        if($tableLaporanPeminjamanBukuBerlangsung->get()->count() == false){
+            return redirect()->route('dashboard')->with(['failed' => 'Mengantri gagal!']);
+        }
 
-    //     $laporanPeminjamanBerlangsung->update([
-    //         'tanggal_pengembalian_peminjaman' => now(),
-    //         'status_pengembalian' => $request->status_pengembalian,
-    //         'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan,
-    //         'updated_at' => now(),
-    //     ]);
+        // delete peminjam buku
+        Buku::findOrFail($buku->id)->update([
+            'peminjam_id' => null,
+            'status_ketersediaan' => 1,
+            'tanggal_deadline_peminjaman' => null,
+            'updated_at' => now(),
+        ]);
 
-    //     DB::table('user_mengantri_pengembalian_buku')->insert([
-    //         'buku_id' => $buku->id,
-    //         'peminjam_id' => $currentUser->id,
-    //         'tanggal_deadline_peminjaman' => $laporanPeminjamanBerlangsung->first()->tanggal_deadline_peminjaman,
-    //         'tanggal_pengembalian_peminjaman' => now(),
-    //         'status_pengembalian' => $request->status_pengembalian,
-    //         'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan,
-    //         'created_at' => now(),
-    //     ]);
+        $laporanPeminjamanBerlangsung->update([
+            'tanggal_pengembalian_peminjaman' => now(),
+            //
+            'status_pengembalian' => 'normal',
+            'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan ?? '',
+            'updated_at' => now(),
+        ]);
 
-    //     return 
-    // }
+        DB::table('user_mengantri_pengembalian_buku')->insert([
+            'buku_id' => $buku->id,
+            'peminjam_id' => $currentUser->id,
+            'tanggal_deadline_peminjaman' => $laporanPeminjamanBerlangsung->first()->tanggal_deadline_peminjaman,
+            'tanggal_pengembalian_peminjaman' => now(),
+            //
+            'status_pengembalian' => 'normal',
+            'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan,
+            'created_at' => now(),
+        ]);
+
+        return redirect()->route('dashboard')->with(['success' => 'Berhasil mengantri pengembalian!']);
+    }
 }
