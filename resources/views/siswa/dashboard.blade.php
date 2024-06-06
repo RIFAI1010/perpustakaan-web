@@ -81,12 +81,32 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
+                        <li class="nav-small-cap">
+                            <i class="bi bi-list nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Aktifitas</span>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-journal"></i>
                                 </span>
-                                <span class="hide-menu">peminjaman</span>
+                                <span class="hide-menu-arrow-down">peminjaman</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-journal-arrow-up"></i>
+                                </span>
+                                <span class="hide-menu">Pengembalian</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <span class="hide-menu">Rating</span>
                             </a>
                         </li>
 

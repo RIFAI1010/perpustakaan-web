@@ -49,12 +49,32 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
+                        <li class="nav-small-cap">
+                            <i class="bi bi-list nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Aktifitas</span>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-journal"></i>
+                                    <i class="bi bi-journal-arrow-down"></i>
                                 </span>
                                 <span class="hide-menu">peminjaman</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="./pengembalian" aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-journal-arrow-up"></i>
+                                </span>
+                                <span class="hide-menu">Pengembalian</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="./rating" aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <span class="hide-menu">Rating</span>
                             </a>
                         </li>
 
@@ -131,19 +151,63 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
+
+                        <div class="card-body">
+                            <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                                <a href="./peminjaman" type="button" class="btn btn-primary m-1 flex-grow-1">Dipinjam</a>
+                                <a href="./pengembalian" type="button" class="btn btn-light m-1 text-primary flex-grow-1">Kembalikan</a>
+                                <a href="./rating" type="button" class="btn btn-light m-1 text-primary flex-grow-1">Rating</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body">
-                                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                                    <button type="button" class="btn btn-primary m-1 flex-grow-1">Dipinjam</button>
-                                    <button type="button" class="btn btn-light m-1 text-primary flex-grow-1">Kembalikan</button>
-                                    <button type="button" class="btn btn-light m-1 text-primary flex-grow-1">Rating</button>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col">ID Buku</th>
+                                                <th scope="col">Sampul</th>
+                                                <th scope="col">Judul</th>
+                                                <th scope="col">Tipe</th>
+                                                <th scope="col" class="text-center">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center"
+                                                        style="max-width: 150px; height: 120px;">
+                                                        <img class="mx-auto mh-100" src="">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-primary-emphasis text-decoration-underline"><b></b>
+                                                    </p>
+                                                    <p class="text-body"></p>
+                                                </td>
+                                                <td></td>
+                                                <td>
+                                                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                              
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -154,20 +218,6 @@
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script>
-        const scrollableCard = document.getElementById('scrollable-card');
-        scrollableCard.addEventListener('wheel', (event) => {
-            if (event.deltaY !== 0) {
-                event.preventDefault();
-                scrollableCard.scrollLeft += event.deltaY;
-            }
-        });
-        const scrollableCover = document.getElementById('scrollable-cover');
-        scrollableCover.addEventListener('wheel', (event) => {
-            if (event.deltaY !== 0) {
-                event.preventDefault();
-                scrollableCover.scrollLeft += event.deltaY;
-            }
-        });
     </script>
 </body>
 
