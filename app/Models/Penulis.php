@@ -13,6 +13,11 @@ class Penulis extends Model
     protected $table = 'penulis';
     protected $guarded = [];
 
+    public function buku()
+    {
+        return $this->belongsToMany(Buku::class, 'penulis_buku');
+    }
+
     public function sluggable(): array
     {
         return [

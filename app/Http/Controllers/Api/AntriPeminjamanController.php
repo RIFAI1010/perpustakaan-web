@@ -29,6 +29,7 @@ class AntriPeminjamanController extends Controller
         $tableUserMengantriPeminjamanBuku = DB::table('user_mengantri_peminjaman_buku');
         $tableLaporanPeminjamanBukuBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung');
 
+        // kalo denda gak bisa 
 
         // check apakah user sudah ada di table user_mengantri_peminjaman_buku dengan idBuku sama
         if($tableUserMengantriPeminjamanBuku->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
