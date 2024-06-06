@@ -44,8 +44,11 @@
                                 <i class="bi bi-list-check fs-6"></i>
                                 <p class="mb-0 fs-3">My Task</p>
                             </a>
-                            <a href="./authentication-login.html"
-                                class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                                type="submit">Logout</button>
+                                        </form>
                         </div>
                     </div>
                 </li>

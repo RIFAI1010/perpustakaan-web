@@ -107,7 +107,7 @@
                                         style="width: 40px; height: 40px;">
                                         <i class="bi bi-heart fs-5"></i>
                                     </a>
-                        <button class="btn btn-success">pinjam</button>
+                        <a class="btn btn-success" href="/mengantri-peminjaman/{{ $buku->slug }}">Pinjam</a>
 
                     </div>
                 </div>

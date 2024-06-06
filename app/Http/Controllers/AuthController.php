@@ -44,7 +44,7 @@ class AuthController extends Controller
             case 'admin':
                 return view('admin.dashboard');
             case 'staff':
-                return view('petugas.dashboard');
+                return redirect('/dashboard_buku');
             case 'siswa': {
                 $categories = Category::all();
                 return view('siswa.dashboard', [
