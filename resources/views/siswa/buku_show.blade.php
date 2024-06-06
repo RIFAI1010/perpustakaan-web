@@ -103,12 +103,20 @@
                     </div>
                     <div style="display: flex">
                         <a href="#"
-                                        class="d-inline-flex me-3 p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
-                                        style="width: 40px; height: 40px;">
-                                        <i class="bi bi-heart fs-5"></i>
-                                    </a>
-                        <a class="btn btn-success" href="/mengantri-peminjaman/{{ $buku->slug }}">Pinjam</a>
-
+                            class="d-inline-flex me-3 p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
+                            style="width: 40px; height: 40px;">
+                            <i class="bi bi-heart fs-5"></i>
+                        </a>
+                        @if ($buku->is_dipinjam())
+                            <a class="btn btn-success" href="/mengantri-pengembalian/{{ $buku->slug }}">Kembalikan</a>
+                        @elseif ($buku->is_mengantri_peminjaman())
+                            <a class="btn btn-danger" href="">Batal antri</a>
+                        @elseif ($buku->is_mengantri_pengembalian())
+                            <a class="btn btn-warning" href="">Menunggu pengembalian...</a>
+                        @elseif ($buku->status_ketersediaan)
+                            <a class="btn btn-primary" href="/mengantri-peminjaman/{{ $buku->slug }}">Pinjam</a>
+                        @else
+                        @endif
                     </div>
                 </div>
                 <div class="row">

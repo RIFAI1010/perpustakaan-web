@@ -15,12 +15,7 @@ class SiswaDashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('siswa.buku_show');
-    }
-
-
+    
     /**
      * Display the specified resource.
      */
