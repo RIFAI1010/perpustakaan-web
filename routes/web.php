@@ -6,7 +6,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardBukuController;
 use App\Http\Controllers\DashboardDendaController;
 use App\Http\Controllers\DashboardSiswaController;
-use App\Http\Controllers\SiswaDashboardController;
 use App\Http\Controllers\DashboardPenulisController;
 use App\Http\Controllers\DashboardPetugasController;
 use App\Http\Controllers\DashboardCategoryController;
@@ -15,6 +14,9 @@ use App\Http\Controllers\DashboardPenyetujuanPeminjamanController;
 use App\Http\Controllers\DashboardPenyetujuanPengembalianController;
 use App\Http\Controllers\DashboardLaporanTransaksiPeminjamanBukuController;
 use App\Http\Controllers\DashboardLaporanPeminjamanBukuBerlangsungController;
+use App\Http\Controllers\SiswaDashboardController;
+use App\Http\Controllers\SiswaDetailController;
+use App\Http\Controllers\tesController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -49,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard');
 
     Route::middleware('role:admin')->group(function () {
+        Route::resource('/dashboard_siswa', DashboardSiswaController::class);
+        Route::resource('/dashboard_petugas', DashboardPetugasController::class);        
     });
 
     Route::middleware('role:staff')->group(function () {
@@ -56,8 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/dashboard_category', DashboardCategoryController::class);
         Route::resource('/dashboard_penulis', DashboardPenulisController::class);
         Route::resource('/dashboard_penerbit', DashboardPenerbitController::class);
-        Route::resource('/dashboard_petugas', DashboardPetugasController::class);
-        Route::resource('/dashboard_siswa', DashboardSiswaController::class);
+        
 
         Route::get('/dashboard_penyetujuan_peminjaman', [DashboardPenyetujuanPeminjamanController::class, 'index'])->name('dashboard_penyetujuan_peminjaman');
         Route::put('/dashboard_penyetujuan_peminjaman/setuju/{id}', [DashboardPenyetujuanPeminjamanController::class, 'setuju']);
@@ -76,11 +79,16 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:siswa')->group(function () {
-        Route::resource('/detail', SiswaDashboardController::class);
+        
+        Route::resource('/detail', SiswaDetailController::class);        
         Route::get('/mengantri-peminjaman/{slug}', [TransaksiController::class, 'mengantri_peminjaman']);
         Route::get('/mengantri-pengembalian/{slug}', [TransaksiController::class, 'mengantri_pengembalian']);
+        Route::get('/batal/mengantri-peminjaman/{slug}', [TransaksiController::class, 'batal_antri_peminjaman']);
+        
         Route::get('/peminjaman', function () {
             return view('siswa.peminjaman');
         });
+
+        // Route::get('/', [SiswaDashboardController::class, 'index']);
     });
 });

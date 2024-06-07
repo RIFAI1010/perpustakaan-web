@@ -128,7 +128,7 @@ class TransaksiController extends Controller
         return redirect()->route('dashboard')->with(['success' => 'Berhasil mengantri peminjaman!']);
     }
 
-    public function batal_antri_peminjaman(Request $request, string $slug)
+    public function batal_antri_peminjaman(string $slug)
     {
         $currentUser = Auth::user();
         $buku = Buku::where('slug', $slug)->firstOrFail();

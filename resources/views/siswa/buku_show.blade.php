@@ -110,7 +110,7 @@
                         @if ($buku->is_dipinjam())
                             <a class="btn btn-success" href="/mengantri-pengembalian/{{ $buku->slug }}">Kembalikan</a>
                         @elseif ($buku->is_mengantri_peminjaman())
-                            <a class="btn btn-danger" href="">Batal antri</a>
+                            <a class="btn btn-danger" href="/batal/mengantri-peminjaman/{{ $buku->slug }}">Batal antri</a>
                         @elseif ($buku->is_mengantri_pengembalian())
                             <a class="btn btn-warning" href="">Menunggu pengembalian...</a>
                         @elseif ($buku->status_ketersediaan)
@@ -131,12 +131,12 @@
                             <div class="col-md-8 pt-4">
                                 <div style="min-height: 200px">
                                     <h1>{{ $buku->judul }}</h2>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center mb-2">
                                             <h5>kategori: </h5>
                                             <button type="button"
                                                 class="btn btn-outline-primary mx-2">{{ $buku->category()->get()[0]->nama }}</button>
                                         </div>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center mb-2">
                                             <h5 style="">Penulis:
                                                 {{ $buku->penulis()->get()[0]->nama ?? 'Tidak diketahui'}}</h5>
                                             <h5 class="mx-2">|</h5>
