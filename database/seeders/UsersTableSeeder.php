@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'admin',
             'first_name' => 'Abdul',
             'last_name' => 'Usep',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('12345678'),
             'role' => 'admin',
         ]);
 
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'petugas',
             'first_name' => 'Rifai',
             'last_name' => 'Hari',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('12345678'),
             'role' => 'staff',
         ]);
 
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'siswa',
             'first_name' => 'Naufal',
             'last_name' => 'Parama',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('12345678'),
             'role' => 'siswa',
         ]);
     }

@@ -266,6 +266,7 @@
 
                                 <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
                                     @forelse($bukus as $buku)
+                                    
 
 
             <div class="col-sm-6 col-lg-2 category-display-{{ $buku->category()->get()[0]->id}}" id="category-display-{{ $buku->category()->get()[0]->id}}">
@@ -298,6 +299,7 @@
                 id="catch"><b>Tidak ada data untuk kategori ini</b>
             </div>
             @empty
+         
 
             <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data
                     buku</b>
@@ -327,9 +329,13 @@
             scrollableButton.scrollLeft += 100;
         });
 
-        $(window).on('load', function () {
-            categoryShowHide({{ $buku->category()->get()[0]->id }})
+       @foreach($bukus as $buku)
+       $(window).on('load', function () {
+        categoryShowHide({{ $buku->category()->get()[0]->id }})
         });
+       @endforeach
+           
+       
 
         function categoryShowHide(id) {
             $(document).ready(function () {

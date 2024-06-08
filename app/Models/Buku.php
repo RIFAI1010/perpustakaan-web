@@ -56,6 +56,14 @@ class Buku extends Model
             ->where('peminjam_id', $currentUser->id)
             ->exists();
     }
+    public function is_mengantri_denda()
+    {
+        $currentUser = Auth::user();
+        return DB::table('laporan_peminjaman_buku_berlangsung')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
 
     public function sluggable(): array
     {

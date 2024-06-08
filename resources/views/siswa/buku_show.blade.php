@@ -112,9 +112,13 @@
                         @elseif ($buku->is_mengantri_peminjaman())
                             <a class="btn btn-danger" href="/batal/mengantri-peminjaman/{{ $buku->slug }}">Batal antri</a>
                         @elseif ($buku->is_mengantri_pengembalian())
-                            <a class="btn btn-warning" href="">Menunggu pengembalian...</a>
+                            <a class="btn btn-warning">Menunggu pengembalian...</a>
+                        @elseif ($buku->is_mengantri_denda())
+                            <a class="btn btn-warning">Menunggu denda dibayar</a>
                         @elseif ($buku->status_ketersediaan)
                             <a class="btn btn-primary" href="/mengantri-peminjaman/{{ $buku->slug }}">Pinjam</a>
+                        @elseif ($buku->status_ketersediaan =! false)
+                            <a class="btn btn-outline-danger">Tidak Tersedia</a>
                         @else
                         @endif
                     </div>
