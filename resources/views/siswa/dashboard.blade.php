@@ -213,7 +213,7 @@
                                             style="width: 32px; height: 32px;">
                                             <i class="bi bi-heart fs-4"></i>
                                         </a>
-                                        <p class="card-text text-truncate mt-3">
+                                        <p class="card-text text-truncate mt-3 {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
                             {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
                         </p>
                                     </div>
@@ -285,7 +285,7 @@
 
                     <div class="card-body p-2">
                         <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
-                        <p class="card-text text-truncate">
+                         <p class="card-text text-truncate mt-3 {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
                             {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
                         </p>
 
