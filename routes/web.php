@@ -89,6 +89,6 @@ Route::middleware('auth')->group(function () {
             return view('siswa.peminjaman');
         });
 
-        Route::get('/dashboard/buku', [SiswaDashboardController::class, 'index']);
+        //Route::get('/dashboard/buku', [SiswaDashboardController::class, 'index']);
     });
 });
