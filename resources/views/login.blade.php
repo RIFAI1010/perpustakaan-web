@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Perpustakaan</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
@@ -51,7 +51,7 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-bold">Belum punya akun</p>
                                         <a class="text-primary fw-bold ms-2"
-                                            href="./authentication-register.html">Create an account</a>
+                                            href="./authentication-register.html">Daftar</a>
                                     </div>
                                 </form>
                             </div>
