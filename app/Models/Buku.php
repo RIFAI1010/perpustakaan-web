@@ -38,6 +38,22 @@ class Buku extends Model
             ->where('peminjam_id', $currentUser->id)
             ->exists();
     }
+    // public function panjang_mengantri_peminjaman()
+    // {
+    //     $currentUser = Auth::user();
+    //     $data = DB::table('user_mengantri_peminjaman_buku')->where('buku_id', $this->id)
+    //         ->where('peminjam_id', $currentUser->id)
+    //         ->pluck('buku_id');
+    //     return [$data];
+    // }
+    // public function data_mengantri_peminjaman($urut)
+    // {
+    //     $currentUser = Auth::user();
+    //     $data = DB::table('user_mengantri_peminjaman_buku')->where('buku_id', $this->id)
+    //         ->where('peminjam_id', $currentUser->id)
+    //         ->pluck('buku_id')[$urut];
+    //     return [$data];
+    // }
 
     public function is_dipinjam()
     {
@@ -47,7 +63,23 @@ class Buku extends Model
             ->where('peminjam_id', $currentUser->id)
             ->exists();
     }
-    
+
+    // public function data_dipinjam_panjang()
+    // {
+    //     $currentUser = Auth::user();
+    //     $judul = DB::table('bukus')->where('id', $this->id)->where('peminjam_id', $currentUser->id)->pluck('judul');
+
+    //     return [$judul];
+    // }
+    // public function data_dipinjam($urut)
+    // {
+    //     $currentUser = Auth::user();
+    //     $judul = DB::table('bukus')->where('id', $this->id)->where('peminjam_id', $currentUser->id)->pluck('judul')[$urut];
+
+    //     return [$judul];
+    // }
+
+
     public function is_mengantri_pengembalian()
     {
         $currentUser = Auth::user();

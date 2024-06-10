@@ -27,10 +27,40 @@
             max-width: 100%;
             max-height: 100%;
         }
+        .bgb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+}
+
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
+    /* Ganti dengan URL gambar latar belakang yang diinginkan */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.5;
+    /* Tetapkan background image */
+    z-index: -2;
+    /* Pastikan div background berada di latar belakang */
+}
     </style>
 </head>
 
 <body>
+    <div class="bgb">
+        <div class="bg"></div>
+      </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -44,9 +74,9 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                                <i class="bi bi-bell"></i>
-                                <div class="notification bg-primary rounded-circle"></div>
+                            <a href="../dashboard">
+
+                                <button class="btn btn-outline-primary">kembali</button>
                             </a>
                         </li>
                     </ul>
@@ -93,13 +123,10 @@
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-top: 100px">
                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                     <div class="mb-3 mb-sm-0">
-                        <a href="../dashboard">
-
-                            <button class="btn btn-outline-primary">kembali</button>
-                        </a>
+                       
                     </div>
                     <div style="display: flex">
                         <a href="#"
@@ -116,7 +143,7 @@
                         @elseif ($buku->is_mengantri_denda())
                             <a class="btn btn-warning">Menunggu denda dibayar</a>
                         @elseif ($buku->status_ketersediaan)
-                            <a clasJs="btn btn-primary" href="/mengantri-peminjaman/{{ $buku->slug }}">Pinjam</a>
+                            <a class="btn btn-primary" href="/mengantri-peminjaman/{{ $buku->slug }}">Pinjam</a>
                         @elseif ($buku->status_ketersediaan =! false)
                             <a class="btn btn-outline-danger">Tidak Tersedia</a>
                         @else

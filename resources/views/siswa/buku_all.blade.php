@@ -7,47 +7,46 @@
     <title>Perpustakaan</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
-    <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
 
     <style>
- .bgb {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0, 0, 0);
-    z-index: -1;
-}
-
-.bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
-    /* Ganti dengan URL gambar latar belakang yang diinginkan */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    opacity: 0.5;
-    /* Tetapkan background image */
-    z-index: -2;
-    /* Pastikan div background berada di latar belakang */
-}
 
 
+        .bgb {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            z-index: -1;
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
+            /* Ganti dengan URL gambar latar belakang yang diinginkan */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0.5;
+            /* Tetapkan background image */
+            z-index: -2;
+            /* Pastikan div background berada di latar belakang */
+        }
     </style>
 </head>
 
 <body>
     <div class="bgb">
         <div class="bg"></div>
-      </div>
+    </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -71,7 +70,7 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./dashboard" aria-expanded="false">
+                            <a class="sidebar-link" href="../dashboard/buku" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-house"></i>
                                 </span>
@@ -85,13 +84,13 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-journal-arrow-down"></i>
+                                    <i class="bi bi-journal"></i>
                                 </span>
-                                <span class="hide-menu">peminjaman</span>
+                                <span class="hide-menu-arrow-down">peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./pengembalian" aria-expanded="false">
+                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-journal-arrow-up"></i>
                                 </span>
@@ -99,7 +98,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./rating" aria-expanded="false">
+                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-star"></i>
                                 </span>
@@ -177,76 +176,87 @@
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid" style="padding-top: 100px">
-                <div class="row">
-                    <div class="col-12">
-
-                        <div class="card-body">
-                            <div class="d-sm-flex d-block align-items-center justify-content-between mb-9 gap-3">
-                                <a href="./peminjaman" type="button" class="btn btn-primary m-1 flex-grow-1">Dipinjam</a>
-                                <a href="./pengembalian" type="button" class="btn btn-light m-1 text-primary flex-grow-1">Kembalikan</a>
-                                <a href="./rating" type="button" class="btn btn-light m-1 text-primary flex-grow-1">Rating</a>
-
-                            </div>
+            <div class="container-fluid">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                    <div class="mb-3 mb-sm-0 d-flex">
+                        <a href="../dashboard">
+                            <i class="bi bi-arrow-left-circle"
+                                style="font-size: 30px; color: white; cursor: pointer;"></i>
+                            
+                        </a>
+                        <div class="mx-3 justify-content-center align-content-center">
+                            <h4 class="fw-semibold text-white mb-0">Buku</h4>
                         </div>
+                    </div>
+                    <div>
 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card w-100">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th scope="col">ID Buku</th>
-                                                <th scope="col">Sampul</th>
-                                                <th scope="col">Judul</th>
-                                                <th scope="col">Tipe</th>
-                                                <th scope="col" class="text-center">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
+                <div class="container mt-4">
+                    <div class="row">
+                        
+                    </div>
+                </div>
+               
+                    <div class="container">
+                        <div class="row">
+                            @forelse($bukus as $buku)
+                    <div class="col-md-4  mb-3">
+                        <div class="card m-0" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4 justify-content-center align-content-center">
+                                    <a href="/detail/{{ $buku->slug }}">
+                                        <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
+                                            alt="Image 1">
+                                    </a>
 
-                                            <tr>
-                                                                                        
-                                                @for ($i = 0; $i < count($buku->panjang_mengantri_peminjaman()[0]) ; $i++)
-                                               <td>{{ str_replace(['[', ']', '"'], '', $buku->data_mengantri_peminjaman($i)[0]) }}</td>
-                                                @endfor
-                                                
-                                               <td>{{ str_replace(['[', ']', '"'], '', $buku->panjang_mengantri_peminjaman()[0]) }}</td>
 
-                                                
-                                                <td>
-                                                    <div class="d-flex justify-content-center"
-                                                        style="max-width: 150px; height: 120px;">
-                                                        <img class="mx-auto mh-100" src="">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="text-primary-emphasis text-decoration-underline"><b></b>
-                                                    </p>
-                                                    <p class="text-body"></p>
-                                                </td>
-                                                <td></td>
-                                                <td>
-                                                    
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                </div>
+                                <div class="col-md-8">
+
+                                    <div class="card-body p-3">
+                                        <a href="/detail/{{ $buku->slug }}">
+                                            <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                                        </a>
+                                        <p class="card-text text-truncate">{{ $buku->deskripsi }}
+                                        </p>
+                                        <div class="d-sm-flex d-block align-items-center justify-content-between">
+                                            <div>
+                                                <a href="#"
+                                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
+                                            style="width: 32px; height: 32px;">
+                                            <i class="bi bi-heart fs-4"></i>
+                                        </a>
+                                            </div>
+                                            <div>
+                                                <p
+                                            class="card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
+                                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                        </p>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+
                                 </div>
 
-
                             </div>
                         </div>
                     </div>
-                </div>
+                    @empty
 
+                    <div style="width: 100%; height: 250px; align-content: center; text-align: center"><b>Tidak ada data
+                            buku</b></div>
+
+                    @endforelse
+                        </div>
+                    </div>
+                    
+                
+              
             </div>
         </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -254,6 +264,7 @@
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script>
+
     </script>
 </body>
 

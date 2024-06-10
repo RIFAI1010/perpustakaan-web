@@ -47,10 +47,42 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+
+        .bgb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+}
+
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
+    /* Ganti dengan URL gambar latar belakang yang diinginkan */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.5;
+    /* Tetapkan background image */
+    z-index: -2;
+    /* Pastikan div background berada di latar belakang */
+}
     </style>
 </head>
 
 <body>
+    <div class="bgb">
+        <div class="bg"></div>
+      </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -107,6 +139,18 @@
                                     <i class="bi bi-star"></i>
                                 </span>
                                 <span class="hide-menu">Rating</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="bi bi-list nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Personal</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="./bookmark" aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-heart"></i>
+                                </span>
+                                <span class="hide-menu-arrow-down">Ditandai</span>
                             </a>
                         </li>
 
@@ -183,18 +227,21 @@
             <div class="container-fluid">
                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                     <div class="mb-3 mb-sm-0">
-                        <h4 class="fw-semibold">Buku</h4>
+                        <h4 class="fw-semibold text-white">Buku</h4>
                     </div>
                     <div>
-                        <i class="bi bi-arrow-right-circle" style="font-size: 30px"></i>
+                        <a href="/dashboard/buku">
+                            <i class="bi bi-arrow-right-circle" style="font-size: 30px; color: white; cursor: pointer;"></i>
+                        
+                        </a>
                     </div>
                 </div>
-                <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4" id="scrollable-card">
+                <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4"  id="scrollable-card">
                     @forelse($bukus as $buku)
                     <div class="col-md-4 mx-3 mb-2">
                         <div class="card m-0" style="max-width: 540px;">
                             <div class="row g-0">
-                                <div class="col-md-4">
+                                <div class="col-md-4 justify-content-center align-content-center">
                                     <a href="/detail/{{ $buku->slug }}">
                                         <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
                                             alt="Image 1">
@@ -205,17 +252,26 @@
                                 <div class="col-md-8">
 
                                     <div class="card-body p-3">
+                                        <a href="/detail/{{ $buku->slug }}">
                                         <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                                    </a>
                                         <p class="card-text text-truncate">{{ $buku->deskripsi }}
                                         </p>
-                                        <a href="#"
+                                        <div class="d-sm-flex d-block align-items-center justify-content-between">
+                                            <div>
+                                                <a href="#"
                                             class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
                                             style="width: 32px; height: 32px;">
                                             <i class="bi bi-heart fs-4"></i>
                                         </a>
-                                        <p class="card-text text-truncate mt-3 {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
-                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                        </p>
+                                            </div>
+                                            <div>
+                                                <p
+                                            class="card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
+                                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                        </p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -225,8 +281,7 @@
                     </div>
                     @empty
 
-                    <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data
-                            buku</b></div>
+                    <div style="width: 100%; height: 250px; align-content: center; text-align: center"><b>Tidak ada data buku</b></div>
 
                     @endforelse
                 </div>
@@ -264,13 +319,10 @@
                                     </div>
                                 </div>
 
-                                <div class="scrollable-y mb-9 pb-2 d-flex" id="scrollable-cover">
+                                <div class="scrollable-y mb-9 pb-2 d-flex rounded-2" style="background-color: #e9ecef" id="scrollable-cover">
                                     @forelse($bukus as $buku)
-                                    
-
-
             <div class="col-sm-6 col-lg-2 category-display-{{ $buku->category()->get()[0]->id}}" id="category-display-{{ $buku->category()->get()[0]->id}}">
-                <div class="card overflow-hidden rounded-2 mx-3 shadow">
+                <div class="card overflow-hidden rounded-2 mx-3 mt-3 shadow">
                     <div class="position-relative">
                         <a href="/detail/{{ $buku->slug }}"><img src="{{ asset("storage/buku/$buku->image") }}"
                                 class="card-img-top" alt="{{ $buku->judul }}">
@@ -295,13 +347,13 @@
             </div>
 
 
-            <div style="width: 100%; height: 100px; align-content: center; text-align: center; display: none;"
+            <div style="width: 100%; height: 270px; align-content: center; text-align: center; display: none;"
                 id="catch"><b>Tidak ada data untuk kategori ini</b>
             </div>
             @empty
          
 
-            <div style="width: 100%; height: 100px; align-content: center; text-align: center"><b>Tidak ada data
+            <div style="width: 100%; height: 270px; align-content: center; text-align: center"><b>Tidak ada data
                     buku</b>
             </div>
 
