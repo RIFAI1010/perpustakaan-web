@@ -50,39 +50,40 @@
 
 
         .bgb {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0, 0, 0);
-    z-index: -1;
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            z-index: -1;
+        }
 
-.bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
-    /* Ganti dengan URL gambar latar belakang yang diinginkan */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    opacity: 0.5;
-    /* Tetapkan background image */
-    z-index: -2;
-    /* Pastikan div background berada di latar belakang */
-}
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
+            /* Ganti dengan URL gambar latar belakang yang diinginkan */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0.5;
+            /* Tetapkan background image */
+            z-index: -2;
+            /* Pastikan div background berada di latar belakang */
+        }
     </style>
 </head>
 
 <body>
+
     <div class="bgb">
         <div class="bg"></div>
-      </div>
+    </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -181,6 +182,7 @@
                             </a>
                         </li>
                     </ul>
+
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                             <a href="" target="_blank" class="btn btn-primary">button</a>
@@ -225,146 +227,172 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid">
-                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                    <div class="mb-3 mb-sm-0">
+
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9 ">
+                    <div class="mb-3 mb-sm-0 class=" py-2"">
                         <h4 class="fw-semibold text-white">Buku</h4>
                     </div>
+
+                    @if (session('success'))
                     <div>
-                        <a href="/dashboard/buku">
-                            <i class="bi bi-arrow-right-circle" style="font-size: 30px; color: white; cursor: pointer;"></i>
-                        
-                        </a>
+                        <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    @endif
+                    @if (session('failed'))
+                    <div>
+                        {{ session('failed') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
-                <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4"  id="scrollable-card">
-                    @forelse($bukus as $buku)
-                    <div class="col-md-4 mx-3 mb-2">
-                        <div class="card m-0" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-4 justify-content-center align-content-center">
+                @endif
+
+                <div class="py-2">
+                    <a href="/dashboard/buku">
+                        <i class="bi bi-arrow-right-circle" style="font-size: 30px; color: white; cursor: pointer;"></i>
+
+                    </a>
+                </div>
+            </div>
+
+
+
+
+            <div class="scrollable-y mb-7 pb-2 d-flex row-cols-1 row-cols-md-3 g-4" id="scrollable-card">
+                @forelse($bukus as $buku)
+                <div class="col-md-4 mx-3 mb-2">
+                    <div class="card m-0" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4 justify-content-center align-content-center">
+                                <a href="/detail/{{ $buku->slug }}">
+                                    <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img" alt="Image 1">
+                                </a>
+
+
+                            </div>
+                            <div class="col-md-8">
+
+                                <div class="card-body p-3">
                                     <a href="/detail/{{ $buku->slug }}">
-                                        <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
-                                            alt="Image 1">
-                                    </a>
-
-
-                                </div>
-                                <div class="col-md-8">
-
-                                    <div class="card-body p-3">
-                                        <a href="/detail/{{ $buku->slug }}">
                                         <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
                                     </a>
-                                        <p class="card-text text-truncate">{{ $buku->deskripsi }}
-                                        </p>
-                                        <div class="d-sm-flex d-block align-items-center justify-content-between">
-                                            <div>
-                                                <a href="#"
-                                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
-                                            style="width: 32px; height: 32px;">
-                                            <i class="bi bi-heart fs-4"></i>
-                                        </a>
-                                            </div>
-                                            <div>
-                                                <p
-                                            class="card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
-                                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                                        </p>
-                                            </div>
+                                    <p class="card-text text-truncate">{{ $buku->deskripsi }}
+                                    </p>
+                                    <div class="d-sm-flex d-block align-items-center justify-content-between">
+                                        <div>
+                                            <a href="#"
+                                                class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
+                                                style="width: 32px; height: 32px;">
+                                                <i class="bi bi-heart fs-4"></i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <p
+                                                class="card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
+                                                {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                @empty
+
+                <div style="width: 100%; height: 250px; align-content: center; text-align: center"><b>Tidak ada data
+                        buku</b></div>
+
+                @endforelse
+            </div>
+            <!--<div class="row row-cols-1 row-cols-md-3 g-4"></div>-->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                                <div class="mb-3 mb-sm-0">
+                                    <h4 class="fw-semibold">Kategori</h4>
+                                </div>
+                                <div>
+                                    <!-- beetwen hole -->
+                                </div>
+                            </div>
+                            <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                                <div class="mb-3 mb-sm-0">
+
+                                    <i id="left" class="bi bi-caret-left-fill mx-2 text-primary"
+                                        style="font-size: 30px; cursor: pointer;"></i>
 
                                 </div>
+                                <div class="scrollable-y" id="scrollable-button" style="overflow: hidden; width: 100%">
+                                    @foreach($categories as $category)
+                                    <button onclick="categoryShowHide({{ $category->id }})"
+                                        id="category-button-{{ $category->id }}" type="button"
+                                        class="btn btn-outline-primary mx-2 d-inline-block">{{ $category->nama }}</button>
+                                    @endforeach
+                                </div>
+                                <div>
+                                    <i id="right" class="bi bi-caret-right-fill mx-2 text-primary"
+                                        style="font-size: 30px; cursor: pointer;"></i>
+                                </div>
+                            </div>
+
+                            <div class="scrollable-y mb-9 pb-2 d-flex rounded-2" style="background-color: #e9ecef"
+                                id="scrollable-cover">
+                                @forelse($bukus as $buku)
+                                <div class="col-sm-6 col-lg-2 category-display-{{ $buku->category()->get()[0]->id}}"
+                                    id="category-display-{{ $buku->category()->get()[0]->id}}">
+                                    <div class="card overflow-hidden rounded-2 mx-3 mt-3 shadow">
+                                        <div class="position-relative">
+                                            <a href="/detail/{{ $buku->slug }}"><img
+                                                    src="{{ asset("storage/buku/$buku->image") }}" class="card-img-top"
+                                                    alt="{{ $buku->judul }}">
+                                            </a>
+
+                                            <a href="#"
+                                                class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
+                                                style="width: 32px; height: 32px;">
+                                                <i class="bi bi-heart fs-4"></i>
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body px-2 py-2">
+                                            <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                                            <p
+                                                class="card-text text-truncate mt-3 {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
+                                                {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div style="width: 100%; height: 270px; align-content: center; text-align: center; display: none;"
+                                    id="catch"><b>Tidak ada data untuk kategori ini</b>
+                                </div>
+                                @empty
+
+
+                                <div style="width: 100%; height: 270px; align-content: center; text-align: center">
+                                    <b>Tidak ada data
+                                        buku</b>
+                                </div>
+
+                                @endforelse
 
                             </div>
                         </div>
                     </div>
-                    @empty
-
-                    <div style="width: 100%; height: 250px; align-content: center; text-align: center"><b>Tidak ada data buku</b></div>
-
-                    @endforelse
-                </div>
-                <!--<div class="row row-cols-1 row-cols-md-3 g-4"></div>-->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card w-100">
-                            <div class="card-body">
-                                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                                    <div class="mb-3 mb-sm-0">
-                                        <h4 class="fw-semibold">Kategori</h4>
-                                    </div>
-                                    <div>
-                                        <!-- beetwen hole -->
-                                    </div>
-                                </div>
-                                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                                    <div class="mb-3 mb-sm-0">
-
-                                        <i id="left" class="bi bi-caret-left-fill mx-2 text-primary"
-                                            style="font-size: 30px; cursor: pointer;"></i>
-
-                                    </div>
-                                    <div class="scrollable-y" id="scrollable-button"
-                                        style="overflow: hidden; width: 100%">
-                                        @foreach($categories as $category)
-                                        <button onclick="categoryShowHide({{ $category->id }})"
-                                            id="category-button-{{ $category->id }}" type="button"
-                                            class="btn btn-outline-primary mx-2 d-inline-block">{{ $category->nama }}</button>
-                                        @endforeach
-                                    </div>
-                                    <div>
-                                        <i id="right" class="bi bi-caret-right-fill mx-2 text-primary"
-                                            style="font-size: 30px; cursor: pointer;"></i>
-                                    </div>
-                                </div>
-
-                                <div class="scrollable-y mb-9 pb-2 d-flex rounded-2" style="background-color: #e9ecef" id="scrollable-cover">
-                                    @forelse($bukus as $buku)
-            <div class="col-sm-6 col-lg-2 category-display-{{ $buku->category()->get()[0]->id}}" id="category-display-{{ $buku->category()->get()[0]->id}}">
-                <div class="card overflow-hidden rounded-2 mx-3 mt-3 shadow">
-                    <div class="position-relative">
-                        <a href="/detail/{{ $buku->slug }}"><img src="{{ asset("storage/buku/$buku->image") }}"
-                                class="card-img-top" alt="{{ $buku->judul }}">
-                        </a>
-
-                        <a href="#"
-                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
-                            style="width: 32px; height: 32px;">
-                            <i class="bi bi-heart fs-4"></i>
-                        </a>
-                    </div>
-
-                    <div class="card-body p-2">
-                        <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
-                         <p class="card-text text-truncate mt-3 {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
-                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                        </p>
-
-                    </div>
-
                 </div>
             </div>
-
-
-            <div style="width: 100%; height: 270px; align-content: center; text-align: center; display: none;"
-                id="catch"><b>Tidak ada data untuk kategori ini</b>
-            </div>
-            @empty
-         
-
-            <div style="width: 100%; height: 270px; align-content: center; text-align: center"><b>Tidak ada data
-                    buku</b>
-            </div>
-
-            @endforelse
-
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
@@ -381,13 +409,13 @@
             scrollableButton.scrollLeft += 100;
         });
 
-       @foreach($bukus as $buku)
-       $(window).on('load', function () {
-        categoryShowHide({{ $buku->category()->get()[0]->id }})
+        @foreach($bukus as $buku)
+        $(window).on('load', function () {
+            categoryShowHide({{$buku->category()->get()[0]->id}})
         });
-       @endforeach
-           
-       
+        @endforeach
+
+
 
         function categoryShowHide(id) {
             $(document).ready(function () {
@@ -398,7 +426,7 @@
                 $(`.category-display-` + id + ``).css("display", "block")
                 // trycatch untuk message data tidak ada
                 try {
-                    document.getElementById(`category-display-`+ id +``).style.display = "block";
+                    document.getElementById(`category-display-` + id + ``).style.display = "block";
                 } catch (error) {
                     document.getElementById("catch").style.display = "block";
                 }

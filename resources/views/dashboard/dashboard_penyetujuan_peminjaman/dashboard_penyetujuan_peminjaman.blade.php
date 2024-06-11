@@ -60,14 +60,14 @@
             <p>{{ $data->tanggal_pengajuan_peminjaman }}</p>
           </td>
           <td>
-            <button type="button" class="d-block btn btn-success w-100 mb-2" data-bs-toggle="modal" data-bs-target="#setujuModal">
+            <button type="button" class="d-block btn btn-success w-100 mb-2" data-bs-toggle="modal" data-bs-target="#setujuModal{{ $data->id }}">
                 <i class="ti ti-edit"></i>
                 Setuju
             </button>
             <form action="/dashboard_penyetujuan_peminjaman/setuju/{{ $data->id }}" method="post">
               @csrf
               @method('PUT')
-              <div class="modal fade" id="setujuModal" tabindex="-1" aria-labelledby="setujuModalLabel" aria-hidden="true">
+              <div class="modal fade" id="setujuModal{{ $data->id }}" tabindex="-1" aria-labelledby="setujuModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">

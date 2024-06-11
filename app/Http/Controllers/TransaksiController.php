@@ -6,6 +6,8 @@ use App\Models\Buku;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use ReflectionClass;
+
 
 class TransaksiController extends Controller
 {
@@ -94,6 +96,8 @@ class TransaksiController extends Controller
     //     // redirect with msg
     // }
 
+
+    
     public function mengantri_peminjaman(string $slug)
     {
         $currentUser = Auth::user();
@@ -101,10 +105,28 @@ class TransaksiController extends Controller
         $tableUserMengantriPeminjamanBuku = DB::table('user_mengantri_peminjaman_buku');
         $tableLaporanPeminjamanBukuBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung');
 
-        // kalo denda gak bisa 
+        //fungsi memecah object
+        // function getProtectedProperty($object, $property) {
+        //     $reflection = new ReflectionClass($object);
+        //     $property = $reflection->getProperty($property);
+        //     $property->setAccessible(true);
+        //     return $property->getValue($object);
+        // }
+        // $collection = $tableLaporanPeminjamanBukuBerlangsung->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->where('denda', '>', 0)->get();
+        // $escapeWhenCastingToString = getProtectedProperty($collection, 'escapeWhenCastingToString');
+        // dd($escapeWhenCastingToString);
+        
+        // dd($tableLaporanPeminjamanBukuBerlangsung->where('peminjam_id', $currentUser->id)->where('denda', '>', 0)->get()->count());
+
+        
+        
+        // kalo denda gak bisa
+        if($tableLaporanPeminjamanBukuBerlangsung->where('peminjam_id', $currentUser->id)->where('denda', '>', 0)->get()->count() != 0){
+            return redirect()->route('dashboard')->with(['failed' => 'Anda sedang terkena denda!']);
+        }
 
         // check apakah user sudah ada di table user_mengantri_peminjaman_buku dengan idBuku sama
-        if($tableUserMengantriPeminjamanBuku->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
+        if($tableUserMengantriPeminjamanBuku->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count() > 0){
             return redirect()->route('dashboard')->with(['failed' => 'Anda sudah mengantri!']);
         }
 
