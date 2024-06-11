@@ -19970,13 +19970,13 @@ fieldset:disabled .btn {
 
 .page-wrapper {
     position: relative;
-    background-color: #f4f4f4;
+    background-color: transparent;
 
 }
 
 .body-wrapper {
     position: relative;
-    background-color: #f4f4f4;
+    background-color: transparent;
 }
 
 .body-wrapper>.container-fluid,

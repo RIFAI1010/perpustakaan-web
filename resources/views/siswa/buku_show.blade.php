@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Perpustakaan</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -27,10 +27,40 @@
             max-width: 100%;
             max-height: 100%;
         }
+        .bgb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+}
+
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
+    /* Ganti dengan URL gambar latar belakang yang diinginkan */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.5;
+    /* Tetapkan background image */
+    z-index: -2;
+    /* Pastikan div background berada di latar belakang */
+}
     </style>
 </head>
 
 <body>
+    <div class="bgb">
+        <div class="bg"></div>
+      </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -44,9 +74,9 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                                <i class="bi bi-bell"></i>
-                                <div class="notification bg-primary rounded-circle"></div>
+                            <a href="../dashboard">
+
+                                <button class="btn btn-outline-primary">kembali</button>
                             </a>
                         </li>
                     </ul>
@@ -93,13 +123,10 @@
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-top: 100px">
                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                     <div class="mb-3 mb-sm-0">
-                        <a href="../dashboard">
-
-                            <button class="btn btn-outline-primary">kembali</button>
-                        </a>
+                       
                     </div>
                     <div style="display: flex">
                         <a href="#"

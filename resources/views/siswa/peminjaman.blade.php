@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Perpustakaan</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
     <link rel="stylesheet" href="../assets/css/styles2.css" />
@@ -12,13 +12,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
 
     <style>
+ .bgb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+}
 
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
+    /* Ganti dengan URL gambar latar belakang yang diinginkan */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.5;
+    /* Tetapkan background image */
+    z-index: -2;
+    /* Pastikan div background berada di latar belakang */
+}
 
 
     </style>
 </head>
 
 <body>
+    <div class="bgb">
+        <div class="bg"></div>
+      </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -148,12 +177,12 @@
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-top: 100px">
                 <div class="row">
                     <div class="col-12">
 
                         <div class="card-body">
-                            <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                            <div class="d-sm-flex d-block align-items-center justify-content-between mb-9 gap-3">
                                 <a href="./peminjaman" type="button" class="btn btn-primary m-1 flex-grow-1">Dipinjam</a>
                                 <a href="./pengembalian" type="button" class="btn btn-light m-1 text-primary flex-grow-1">Kembalikan</a>
                                 <a href="./rating" type="button" class="btn btn-light m-1 text-primary flex-grow-1">Rating</a>
@@ -181,7 +210,14 @@
                                         <tbody class="table-group-divider">
 
                                             <tr>
-                                                <td></td>
+                                                                                        
+                                                @for ($i = 0; $i < count($buku->panjang_mengantri_peminjaman()[0]) ; $i++)
+                                               <td>{{ str_replace(['[', ']', '"'], '', $buku->data_mengantri_peminjaman($i)[0]) }}</td>
+                                                @endfor
+                                                
+                                               <td>{{ str_replace(['[', ']', '"'], '', $buku->panjang_mengantri_peminjaman()[0]) }}</td>
+
+                                                
                                                 <td>
                                                     <div class="d-flex justify-content-center"
                                                         style="max-width: 150px; height: 120px;">

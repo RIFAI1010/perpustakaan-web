@@ -2,10 +2,15 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\tesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\SiswaDetailController;
 use App\Http\Controllers\DashboardBukuController;
 use App\Http\Controllers\DashboardDendaController;
 use App\Http\Controllers\DashboardSiswaController;
+use App\Http\Controllers\SiswaDashboardController;
+use App\Http\Controllers\SiswaTransaksiController;
 use App\Http\Controllers\DashboardPenulisController;
 use App\Http\Controllers\DashboardPetugasController;
 use App\Http\Controllers\DashboardCategoryController;
@@ -14,10 +19,6 @@ use App\Http\Controllers\DashboardPenyetujuanPeminjamanController;
 use App\Http\Controllers\DashboardPenyetujuanPengembalianController;
 use App\Http\Controllers\DashboardLaporanTransaksiPeminjamanBukuController;
 use App\Http\Controllers\DashboardLaporanPeminjamanBukuBerlangsungController;
-use App\Http\Controllers\SiswaDashboardController;
-use App\Http\Controllers\SiswaDetailController;
-use App\Http\Controllers\tesController;
-use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ use App\Http\Controllers\TransaksiController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('begin');
 });
 
 
@@ -85,10 +86,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mengantri-pengembalian/{slug}', [TransaksiController::class, 'mengantri_pengembalian']);
         Route::get('/batal/mengantri-peminjaman/{slug}', [TransaksiController::class, 'batal_antri_peminjaman']);
         
-        Route::get('/peminjaman', function () {
-            return view('siswa.peminjaman');
-        });
+        Route::get('/peminjaman', [SiswaTransaksiController::class, 'peminjaman']);
 
-        // Route::get('/', [SiswaDashboardController::class, 'index']);
+        Route::get('/dashboard/buku', [SiswaDashboardController::class, 'index']);
     });
 });

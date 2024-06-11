@@ -4,12 +4,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Perpustakaan</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <style>
+        .bgb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
+}
+
+.bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(" {{ asset('assets/images/backgrounds/cloud-bg.jpg') }} ");
+    /* Ganti dengan URL gambar latar belakang yang diinginkan */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.4;
+    /* Tetapkan background image */
+    z-index: -2;
+    /* Pastikan div background berada di latar belakang */
+}
+    </style>
 </head>
 
 <body>
+    <div class="bgb">
+        <div class="bg"></div>
+      </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -51,7 +83,7 @@
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-bold">Belum punya akun</p>
                                         <a class="text-primary fw-bold ms-2"
-                                            href="./authentication-register.html">Create an account</a>
+                                            href="./authentication-register.html">Daftar</a>
                                     </div>
                                 </form>
                             </div>
