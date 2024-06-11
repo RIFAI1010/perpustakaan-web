@@ -80,14 +80,14 @@
                   Setuju
               </button>
             </form>
-            <button type="button" class="d-block btn btn-danger w-100 mb-2" data-bs-toggle="modal" data-bs-target="#beriDendaModal">
+            <button type="button" class="d-block btn btn-danger w-100 mb-2" data-bs-toggle="modal" data-bs-target="#beriDendaModal{{ $data->id }}">
                 <i class="ti ti-edit"></i>
                 Beri denda
             </button>
             <form action="/dashboard_penyetujuan_pengembalian/beri_denda/{{ $data->id }}" method="post">
               @csrf
               @method('PUT')
-              <div class="modal fade" id="beriDendaModal" tabindex="-1" aria-labelledby="beriDendaModalLabel" aria-hidden="true">
+              <div class="modal fade" id="beriDendaModal{{ $data->id }}" tabindex="-1" aria-labelledby="beriDendaModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">

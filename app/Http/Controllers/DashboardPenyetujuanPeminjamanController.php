@@ -20,7 +20,7 @@ class DashboardPenyetujuanPeminjamanController extends Controller
         $request->validate([
             'tanggal_deadline_peminjaman' => ['required'],
         ]);
-
+        
         $dataAntrian = DB::table('user_mengantri_peminjaman_buku')->where('id', $id)->first();
 
         Buku::findOrFail($dataAntrian->buku_id)->update([

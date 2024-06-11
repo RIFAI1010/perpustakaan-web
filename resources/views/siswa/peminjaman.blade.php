@@ -208,14 +208,17 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
-
+                                            @foreach ($bukus as $buku)
                                             <tr>
                                                                                         
-                                                @for ($i = 0; $i < count($buku->panjang_mengantri_peminjaman()[0]) ; $i++)
+                                                {{-- @for ($i = 0; $i < count($buku->panjang_mengantri_peminjaman()[0]) ; $i++)
                                                <td>{{ str_replace(['[', ']', '"'], '', $buku->data_mengantri_peminjaman($i)[0]) }}</td>
-                                                @endfor
+                                                @endfor --}}
                                                 
-                                               <td>{{ str_replace(['[', ']', '"'], '', $buku->panjang_mengantri_peminjaman()[0]) }}</td>
+                                               {{-- <td>{{ str_replace(['[', ']', '"'], '', $buku->panjang_mengantri_peminjaman()[0]) }}</td> --}}
+                                               {{-- <td>{{ str_replace(['[', ']', '"'], '', $buku->data_dipinjam_panjang()) }}</td> --}}
+                                               {{-- <td>{{ $buku->data_dipinjam_panjang() }}</td> --}}
+                                               <td>{{ $buku->judul }}</td>
 
                                                 
                                                 <td>
@@ -234,6 +237,7 @@
                                                     
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

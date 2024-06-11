@@ -31,9 +31,7 @@ use App\Http\Controllers\DashboardLaporanPeminjamanBukuBerlangsungController;
 |
 */
 
-Route::get('/', function () {
-    return view('begin');
-});
+
 
 
 
@@ -45,6 +43,9 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/', function () {
+        return view('begin');
+    });#
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
