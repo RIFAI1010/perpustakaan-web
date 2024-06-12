@@ -14,21 +14,22 @@ class HistoryController extends Controller
     public function index(Request $request)
     {
         //define validation rules
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'user_id' => 'required',
+        // ]);
 
-        //check if validation fails
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+        // //check if validation fails
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors(), 422);
+        // }
+        $currentUser = auth()->user();
+
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $laporanTransaksiPeminjamanBuku = LaporanTransaksiPeminjamanBuku::where('peminjam_id', $request->user_id)->get();
-
-        // org code
-        // foreach ($laporanTransaksiPeminjamanBuku as $data) {
-        //     array_push($bukuSudahDipinjam, $data->buku);
-        // }
+        $laporanTransaksiPeminjamanBuku = LaporanTransaksiPeminjamanBuku::where('peminjam_id', $currentUser->id)->get();
+        
         $bukuSudahDipinjam = $laporanTransaksiPeminjamanBuku->map(
             function($data){
                 return $data->buku;
@@ -38,7 +39,7 @@ class HistoryController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'History User',
-            'sedang_dipinjam' => Buku::where('peminjam_id', $request->user_id)->get(),
+            'sedang_dipinjam' => Buku::where('peminjam_id', $currentUser->id)->get(),
             'sudah_dipinjam' => $bukuSudahDipinjam,
         ], 200);
     }

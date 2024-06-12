@@ -17,12 +17,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware(['auth:api'])->group(function(){
+    Route::get('/homepage', [App\Http\Controllers\Api\HomePageController::class, 'index']);
+    Route::get('/detail-buku/{slug}', [App\Http\Controllers\Api\DetailBukuController::class, 'index']);
+    Route::post('/mengantri-peminjaman/{slug}', [App\Http\Controllers\Api\AntriPeminjamanController::class, 'index']);
+    Route::delete('/mengantri-peminjaman/{slug}', [App\Http\Controllers\Api\AntriPeminjamanController::class, 'batal_antri']);
+    Route::post('/mengantri-pengembalian/{slug}', [App\Http\Controllers\Api\AntriPengembalianController::class, 'index']);
+    Route::get('/history', [App\Http\Controllers\Api\HistoryController::class, 'index']);
+    Route::get('/menunggu', [App\Http\Controllers\Api\MenungguController::class, 'index']);
+});
 
-Route::get('/homepage', [App\Http\Controllers\Api\HomePageController::class, 'index']);
-Route::get('/detail-buku/{slug}', [App\Http\Controllers\Api\DetailBukuController::class, 'index']);
-Route::post('/mengantri-peminjaman/{slug}', [App\Http\Controllers\Api\AntriPeminjamanController::class, 'index']);
-Route::delete('/mengantri-peminjaman/{slug}', [App\Http\Controllers\Api\AntriPeminjamanController::class, 'batal_antri']);
-Route::post('/mengantri-pengembalian/{slug}', [App\Http\Controllers\Api\AntriPengembalianController::class, 'index']);
-Route::get('/history', [App\Http\Controllers\Api\HistoryController::class, 'index']);
-Route::get('/menunggu', [App\Http\Controllers\Api\MenungguController::class, 'index']);
-Route::get('/search/penulis/{slug}', [App\Http\Controllers\Api\SearchController::class, 'penulis']);
+// Route::get('/search/penulis/{slug}', [App\Http\Controllers\Api\SearchController::class, 'penulis']);
+
+// auth jwt
+Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'register']);
+Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
