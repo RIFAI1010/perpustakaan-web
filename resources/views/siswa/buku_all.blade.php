@@ -70,7 +70,7 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="../dashboard/buku" aria-expanded="false">
+                            <a class="sidebar-link" href="./buku" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-house"></i>
                                 </span>
@@ -82,7 +82,7 @@
                             <span class="hide-menu">Aktifitas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
+                            <a class="sidebar-link" href="../peminjaman" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-journal"></i>
                                 </span>
@@ -90,7 +90,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
+                            <a class="sidebar-link" href="../peminjaman" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-journal-arrow-up"></i>
                                 </span>
@@ -98,11 +98,23 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
+                            <a class="sidebar-link" href="../peminjaman" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-star"></i>
                                 </span>
                                 <span class="hide-menu">Rating</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="bi bi-list nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Personal</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../ditandai" aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-heart"></i>
+                                </span>
+                                <span class="hide-menu-arrow-down">Ditandai</span>
                             </a>
                         </li>
 
@@ -222,10 +234,11 @@
                                         </p>
                                         <div class="d-sm-flex d-block align-items-center justify-content-between">
                                             <div>
-                                                <a href="#"
+                                                <a href="/menandai-buku/{{ $buku->slug }}"
                                             class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
                                             style="width: 32px; height: 32px;">
-                                            <i class="bi bi-heart fs-4"></i>
+                                            <i class="bi bi-{{ $buku->is_ditandai() ? 'heart-fill' : 'heart'}} fs-4"></i>
+
                                         </a>
                                             </div>
                                             <div>

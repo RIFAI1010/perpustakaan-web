@@ -129,10 +129,10 @@
                        
                     </div>
                     <div style="display: flex">
-                        <a href="#"
+                        <a href="/menandai-buku/{{ $buku->slug }}"
                             class="d-inline-flex me-3 p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
                             style="width: 40px; height: 40px;">
-                            <i class="bi bi-heart fs-5"></i>
+                            <i class="bi bi-{{ $buku->is_ditandai() ? 'heart-fill' : 'heart'}} fs-4"></i>
                         </a>
                         @if ($buku->is_dipinjam())
                             <a class="btn btn-success" href="/mengantri-pengembalian/{{ $buku->slug }}">Kembalikan</a>

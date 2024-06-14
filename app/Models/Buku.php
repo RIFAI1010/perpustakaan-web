@@ -64,13 +64,13 @@ class Buku extends Model
             ->exists();
     }
 
-    public function data_dipinjam_panjang()
-    {
-        $currentUser = Auth::user();
-        $bukus = Buku::where('peminjam_id', $currentUser->id)->get('');
+    // public function data_dipinjam_panjang()
+    // {
+    //     $currentUser = Auth::user();
+    //     $bukus = Buku::where('peminjam_id', $currentUser->id)->get('');
 
-        return $bukus;
-    }
+    //     return $bukus;
+    // }
     // public function data_dipinjam($urut)
     // {
     //     $currentUser = Auth::user();
@@ -94,6 +94,14 @@ class Buku extends Model
         return DB::table('laporan_peminjaman_buku_berlangsung')
             ->where('buku_id', $this->id)
             ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+    public function is_ditandai() {
+        $currentUser = Auth::user();
+        return DB::table('user_menandai_buku')
+            ->where('buku_id', $this->id)
+            ->where('user_id', $currentUser->id)
             ->exists();
     }
 

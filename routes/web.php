@@ -19,6 +19,7 @@ use App\Http\Controllers\DashboardPenyetujuanPeminjamanController;
 use App\Http\Controllers\DashboardPenyetujuanPengembalianController;
 use App\Http\Controllers\DashboardLaporanTransaksiPeminjamanBukuController;
 use App\Http\Controllers\DashboardLaporanPeminjamanBukuBerlangsungController;
+use App\Http\Controllers\SiswaMenandaiBukuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,11 +84,13 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:siswa')->group(function () {
         
         Route::resource('/detail', SiswaDetailController::class);        
+        Route::get('/menandai-buku/{slug}', [SiswaMenandaiBukuController::class, 'menandai']);
         Route::get('/mengantri-peminjaman/{slug}', [TransaksiController::class, 'mengantri_peminjaman']);
         Route::get('/mengantri-pengembalian/{slug}', [TransaksiController::class, 'mengantri_pengembalian']);
         Route::get('/batal/mengantri-peminjaman/{slug}', [TransaksiController::class, 'batal_antri_peminjaman']);
         
         Route::get('/peminjaman', [SiswaTransaksiController::class, 'peminjaman']);
+        Route::get('/ditandai', [SiswaMenandaiBukuController::class, 'index']);
 
         Route::get('/dashboard/buku', [SiswaDashboardController::class, 'index']);
     });

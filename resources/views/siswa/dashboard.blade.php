@@ -147,7 +147,7 @@
                             <span class="hide-menu">Personal</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./bookmark" aria-expanded="false">
+                            <a class="sidebar-link" href="./ditandai" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-heart"></i>
                                 </span>
@@ -282,10 +282,10 @@
                                     </p>
                                     <div class="d-sm-flex d-block align-items-center justify-content-between">
                                         <div>
-                                            <a href="#"
+                                            <a href="/menandai-buku/{{ $buku->slug }}"
                                                 class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
                                                 style="width: 32px; height: 32px;">
-                                                <i class="bi bi-heart fs-4"></i>
+                                                <i class="bi bi-{{ $buku->is_ditandai() ? 'heart-fill' : 'heart'}} fs-4"></i>
                                             </a>
                                         </div>
                                         <div>
@@ -354,10 +354,11 @@
                                                     alt="{{ $buku->judul }}">
                                             </a>
 
-                                            <a href="#"
+                                            <a href="/menandai-buku/{{ $buku->slug }}"
                                                 class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle position-absolute bottom-0 end-0 mb-n3 me-2"
                                                 style="width: 32px; height: 32px;">
-                                                <i class="bi bi-heart fs-4"></i>
+                                                <i class="bi bi-{{ $buku->is_ditandai() ? 'heart-fill' : 'heart'}} fs-4"></i>
+
                                             </a>
                                         </div>
 

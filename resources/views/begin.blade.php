@@ -88,7 +88,7 @@
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid justify-content-center align-content-center d-flex" style="padding-top: 100px; height: 600px">
+            <div class="container-fluid justify-content-center align-content-center d-flex vh-100" style="padding-top: 100px; height: 600px">
                 <div class="justify-content-center align-content-center" style="text-align: center">
                     <div><p class="text-white mb-0" style="font-size: 60px; font-weight: bold">PERPUSTAKAAN</p></div>
                     <div style="margin-bottom: 40px"><p class="text-white mb-0" style="font-size: 30px">sebuah perpustakaan coy</p></div>
