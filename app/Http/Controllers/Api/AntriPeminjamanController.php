@@ -7,30 +7,18 @@ use App\Models\Buku;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class AntriPeminjamanController extends Controller
 {
     public function index(Request $request, string $slug)
     {
-        //define validation rules
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-        ]);
-
-        //check if validation fails
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-
-        $currentUser = User::findOrFail($request->user_id);
+        $currentUser = auth()->user();
         $buku = Buku::where('slug', $slug)->firstOrFail();
         $tableUserMengantriPeminjamanBuku = DB::table('user_mengantri_peminjaman_buku');
         $tableLaporanPeminjamanBukuBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung');
 
         // kalo denda gak bisa 
-        if(!($tableLaporanPeminjamanBukuBerlangsung->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->where('denda', '>', 0)->get()->count())){
+        if($tableLaporanPeminjamanBukuBerlangsung->where('peminjam_id', $currentUser->id)->where('denda', '>', 0)->get()->count()){
             return response()->json([
                 'success' => false,
                 'message' => 'Anda sedang terkena denda!',
@@ -64,7 +52,7 @@ class AntriPeminjamanController extends Controller
 
         DB::table('user_mengantri_peminjaman_buku')->insert([
             'buku_id' => $buku->id,
-            'peminjam_id' => $request->user_id,
+            'peminjam_id' => $currentUser->id,
             'tanggal_pengajuan_peminjaman' => now(),
             'created_at' => now(),
         ]);
@@ -77,23 +65,11 @@ class AntriPeminjamanController extends Controller
 
     public function batal_antri(Request $request, string $slug)
     {
-        //define validation rules
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-        ]);
-
-        //check if validation fails
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-
-        $currentUser = User::findOrFail($request->user_id);
+        $currentUser = auth()->user();
         $buku = Buku::where('slug', $slug)->firstOrFail();
         $tableUserMengantriPeminjamanBuku = DB::table('user_mengantri_peminjaman_buku')
             ->where('buku_id', $buku->id)
             ->where('peminjam_id', $currentUser->id);
-
 
         // check apakah mengantri
         if($tableUserMengantriPeminjamanBuku->get()->count() == false){

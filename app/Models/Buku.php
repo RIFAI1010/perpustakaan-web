@@ -105,6 +105,128 @@ class Buku extends Model
             ->exists();
     }
 
+
+
+
+    // for api
+    public function is_mengantri_peminjaman_api()
+    {
+        $currentUser = auth()->user();
+        
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return DB::table('user_mengantri_peminjaman_buku')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+
+    public function is_dipinjam_api()
+    {
+        $currentUser = auth()->user();
+
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return DB::table('bukus')
+            ->where('id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+    public function is_mengantri_pengembalian_api()
+    {
+        $currentUser = auth()->user();
+
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return DB::table('user_mengantri_pengembalian_buku')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+    public function is_mengantri_denda_api()
+    {
+        $currentUser = auth()->user();
+
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        return DB::table('laporan_peminjaman_buku_berlangsung')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+
+
+
+    // for api
+    public function is_mengantri_peminjaman_api()
+    {
+        $currentUser = auth()->user();
+        
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return DB::table('user_mengantri_peminjaman_buku')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+
+    public function is_dipinjam_api()
+    {
+        $currentUser = auth()->user();
+
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return DB::table('bukus')
+            ->where('id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+    public function is_mengantri_pengembalian_api()
+    {
+        $currentUser = auth()->user();
+
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return DB::table('user_mengantri_pengembalian_buku')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
+    public function is_mengantri_denda_api()
+    {
+        $currentUser = auth()->user();
+
+        if (!$currentUser) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        
+        return DB::table('laporan_peminjaman_buku_berlangsung')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+
     public function sluggable(): array
     {
         return [

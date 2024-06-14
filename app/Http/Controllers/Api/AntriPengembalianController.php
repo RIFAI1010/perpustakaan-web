@@ -4,26 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Buku;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class AntriPengembalianController extends Controller
 {
-    public function index(Request $request, string $slug){
-        //define validation rules
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-        ]);
-
-        //check if validation fails
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-
-        $currentUser = User::findOrFail($request->user_id);
+    public function index(string $slug){
+        $currentUser = auth()->user();
         $buku = Buku::where('slug', $slug)->firstOrFail();
         $tableUserMengantriPengembalian = DB::table('user_mengantri_pengembalian_buku');
         $tableLaporanPeminjamanBukuBerlangsung = DB::table('laporan_peminjaman_buku_berlangsung');
@@ -47,10 +33,19 @@ class AntriPengembalianController extends Controller
             ], 400);
         }
 
+        // delete peminjam buku
+        Buku::findOrFail($buku->id)->update([
+            'peminjam_id' => null,
+            'status_ketersediaan' => 1,
+            'tanggal_deadline_peminjaman' => null,
+            'updated_at' => now(),
+        ]);
+
         $laporanPeminjamanBerlangsung->update([
             'tanggal_pengembalian_peminjaman' => now(),
-            'status_pengembalian' => $request->status_pengembalian,
-            'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan,
+            //
+            'status_pengembalian' => 'normal',
+            // 'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan ?? '',
             'updated_at' => now(),
         ]);
 
@@ -59,8 +54,9 @@ class AntriPengembalianController extends Controller
             'peminjam_id' => $currentUser->id,
             'tanggal_deadline_peminjaman' => $laporanPeminjamanBerlangsung->first()->tanggal_deadline_peminjaman,
             'tanggal_pengembalian_peminjaman' => now(),
-            'status_pengembalian' => $request->status_pengembalian,
-            'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan,
+            //
+            'status_pengembalian' => 'normal',
+            // 'foto_buku_dikembalikan' => $request->foto_buku_dikembalikan,
             'created_at' => now(),
         ]);
 
