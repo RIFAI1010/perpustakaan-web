@@ -190,26 +190,28 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid">
-                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9" style="min-height: 60px">
                     <div class="mb-3 mb-sm-0 d-flex">
-                        <a href="../dashboard">
-                            <i class="bi bi-arrow-left-circle"
-                                style="font-size: 30px; color: white; cursor: pointer;"></i>
-                            
-                        </a>
                         <div class="mx-3 justify-content-center align-content-center">
-                            <h4 class="fw-semibold text-white mb-0">Buku</h4>
+                            <h4 class="fw-semibold text-white mb-0">Ditandai</h4>
                         </div>
                     </div>
-                    <div>
-
+                    @if (session('success'))                    
+                    <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                </div>
-                <div class="container mt-4">
-                    <div class="row">
-                        
+                    @elseif (session('failed'))
+                    <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                        {{ session('failed') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    @else
+                    <div></div>
+                    @endif
+                    <div></div>
                 </div>
+               
                
                     <div class="container">
                         <div class="row">

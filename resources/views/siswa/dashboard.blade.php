@@ -228,34 +228,30 @@
             <!--  Header End -->
             <div class="container-fluid">
 
-                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9 ">
-                    <div class="mb-3 mb-sm-0 class=" py-2"">
-                        <h4 class="fw-semibold text-white">Buku</h4>
-                    </div>
-
-                    @if (session('success'))
-                    <div>
-                        <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9" style="min-height: 60px">
+                    <div class="mb-3 mb-sm-0 d-flex">
+                        <div class="mx-3 justify-content-center align-content-center">
+                            <h4 class="fw-semibold text-white mb-0">Buku</h4>
                         </div>
                     </div>
+                    @if (session('success'))                    
+                    <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>              
                     @endif
                     @if (session('failed'))
-                    <div>
+                    <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
                         {{ session('failed') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    @endif
+                    <div>
+                        <a href="dashboard/buku">
+                            <i class="bi bi-arrow-right-circle" style="font-size: 30px; color: white; cursor: pointer;"></i>                        
+                        </a>
+                    </div>
                 </div>
-                @endif
-
-                <div class="py-2">
-                    <a href="/dashboard/buku">
-                        <i class="bi bi-arrow-right-circle" style="font-size: 30px; color: white; cursor: pointer;"></i>
-
-                    </a>
-                </div>
-            </div>
 
 
 

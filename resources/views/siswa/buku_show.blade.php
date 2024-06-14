@@ -74,10 +74,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="../dashboard">
-
-                                <button class="btn btn-outline-primary">kembali</button>
-                            </a>
+                            
                         </li>
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -124,11 +121,25 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid" style="padding-top: 100px">
-                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                    <div class="mb-3 mb-sm-0">
-                       
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9" style="min-height: 60px">
+                    <a href="../dashboard">
+                        <button class="btn btn-primary">kembali</button>
+                    </a>
+                    @if (session('success'))                    
+                    <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    @elseif (session('failed'))
+                    <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                        {{ session('failed') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @else
+                    <div></div>
+                    @endif
                     <div style="display: flex">
+                        
                         <a href="/menandai-buku/{{ $buku->slug }}"
                             class="d-inline-flex me-3 p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
                             style="width: 40px; height: 40px;">
