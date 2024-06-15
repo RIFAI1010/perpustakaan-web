@@ -80,8 +80,8 @@
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end gap-1">
-                            <a href="./login"  class="btn btn-primary mx-2">Daftar</a>
-                            <a href="./login"  class="btn btn-outline-primary mx-2">Masuk</a>
+                            <a href="{{ route('register') }}"  class="btn btn-primary mx-2">Daftar</a>
+                            <a href="{{ route('login') }}"  class="btn btn-outline-primary mx-2">Masuk</a>
                             
                         </ul>
                     </div>
@@ -91,9 +91,9 @@
             <div class="container-fluid justify-content-center align-content-center d-flex vh-100" style="padding-top: 100px; height: 600px">
                 <div class="justify-content-center align-content-center" style="text-align: center">
                     <div><p class="text-white mb-0" style="font-size: 60px; font-weight: bold">PERPUSTAKAAN</p></div>
-                    <div style="margin-bottom: 40px"><p class="text-white mb-0" style="font-size: 30px">sebuah perpustakaan coy</p></div>
-                    <div><a href="./login" class="btn btn-primary mx-2 px-4 py-2" style="font-size: 20px">Daftar</a>
-                        <a href="./login" class="btn btn-outline-primary mx-2 px-4 py-2" style="font-size: 20px;">Masuk</a></div>
+                    <div style="margin-bottom: 40px"><p class="text-white mb-0" style="font-size: 30px">Perpustakaan Perpustakaan</p></div>
+                    <div><a href="{{ route('register') }}" class="btn btn-primary mx-2 px-4 py-2" style="font-size: 20px">Daftar</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary mx-2 px-4 py-2" style="font-size: 20px;">Masuk</a></div>
 
                 </div>
             </div>
