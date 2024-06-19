@@ -7,12 +7,11 @@
     <title>Perpustakaan</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <link rel="stylesheet" href="../assets/css/styles2.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
 
     <style>
-
-
         .bgb {
             position: fixed;
             top: 0;
@@ -70,7 +69,7 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="../dashboard" aria-expanded="false">
+                            <a class="sidebar-link" href="./dashboard" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-house"></i>
                                 </span>
@@ -82,11 +81,11 @@
                             <span class="hide-menu">Aktifitas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./proses" aria-expanded="false">
+                            <a class="sidebar-link" href="./selesai" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-journal"></i>
+                                    <i class="bi bi-journal-arrow-down"></i>
                                 </span>
-                                <span class="hide-menu-arrow-down">peminjaman</span>
+                                <span class="hide-menu">peminjaman</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -94,14 +93,13 @@
                             <span class="hide-menu">Personal</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ditandai" aria-expanded="false">
+                            <a class="sidebar-link" href="../ditandai" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-heart"></i>
                                 </span>
                                 <span class="hide-menu-arrow-down">Ditandai</span>
                             </a>
                         </li>
-                        
 
 
                     </ul>
@@ -173,97 +171,115 @@
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid">
-                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9" style="min-height: 60px">
-                    <div class="mb-3 mb-sm-0 d-flex">
-                        <div class="mx-3 justify-content-center align-content-center">
-                            <h4 class="fw-semibold text-white mb-0">Ditandai</h4>
+            <div class="container-fluid min-vh-100" style="padding-top: 100px">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card-body">
+                            <div class="d-sm-flex d-block align-items-center justify-content-between mb-9 gap-3">
+                                <a href="./proses" type="button" class="btn btn-light text-primary m-1 flex-grow-1">Proses</a>
+                                <a href="./dipinjam" type="button"
+                                    class="btn btn-light m-1 text-primary m-1 flex-grow-1">Dipinjam</a>
+                                <a href="./antrian" type="button"
+                                    class="btn btn-light m-1 text-primary flex-grow-1">Antrian</a>
+                                <a href="./selesai" type="button"
+                                    class="btn btn-primary flex-grow-1">Selesai</a>
+                                    @if (session('success'))                    
+                                    <div class="alert alert-success alert-dismissible fade show mb-0 position-fixed" role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>              
+                                    @endif
+                                    @if (session('failed'))
+                                    <div class="alert alert-danger alert-dismissible fade show mb-0 position-fixed" role="alert">
+                                        {{ session('failed') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    @endif
+                            </div>
                         </div>
+
                     </div>
-                    @if (session('success'))                    
-                    <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @elseif (session('failed'))
-                    <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
-                        {{ session('failed') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @else
-                    <div></div>
-                    @endif
-                    <div></div>
                 </div>
-               
-               
-                    <div class="container">
-                        <div class="row">
-                            @forelse($bukus as $buku)
-                    <div class="col-md-4  mb-3">
-                        <div class="card m-0" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-4 justify-content-center align-content-center">
-                                    <a href="/detail/{{ $buku->slug }}">
-                                        <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
-                                            alt="Image 1">
-                                    </a>
-
-
-                                </div>
-                                <div class="col-md-8">
-
-                                    <div class="card-body p-3">
-                                        <a href="/detail/{{ $buku->slug }}">
-                                            <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
-                                        </a>
-                                        <p class="card-text text-truncate">{{ $buku->deskripsi }}
-                                        </p>
-                                        <div class="d-sm-flex d-block align-items-center justify-content-between">
-                                            <div>
-                                                <a href="/menandai-buku/{{ $buku->slug }}"
-                                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
-                                            style="width: 32px; height: 32px;">
-                                            <i class="bi bi-{{ $buku->is_ditandai() ? 'heart-fill' : 'heart'}} fs-4"></i>
-
-                                        </a>
-                                            </div>
-                                            <div>
-                                                <p
-                                            class="text-end card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
-                                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                                        </p>
-                                        <p class="card-text text-truncate">
-                                            @if ($buku->is_rating_ratarata($buku->slug) == 0.0)
-                                                belum ada rating
-                                            @else
-                                                <i class="bi bi-star-fill" style="color: orange"></i>
-                                                {{ $buku->is_rating_ratarata($buku->slug) }}
-                                            @endif
-                                        </p>
-                                            </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card bg-transparent">
+                                    <div class="card-body py-0 px-3 d-md-flex text-center">
+                                        <div class="col-md-2">
+                                            <h5 class="fw-semibold">Buku</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5 class="fw-semibold">Judul</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5 class="fw-semibold">Tanggal Peminjaman</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5 class="fw-semibold">Tanggal Pengembalian</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5 class="fw-semibold">Denda</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5 class="fw-semibold">Denda</h5>
                                         </div>
                                         
-                                        
                                     </div>
-
+                                </div>
+                                <div>
+                                    @forelse ($is_selesai as $buku)
+                                    <div class="card" style="background-color: #e9ecef">
+                                        <div class="card-body p-3 d-md-flex text-center">
+                                            <div class="col-md-2 d-flex justify-content-center"
+                                                style="height: 180px;">
+                                                <a href="../detail/{{ $buku->slug }}">
+                                                <img class="mx-auto mh-100"
+                                                    src="{{ asset('/storage/buku/'. $buku->image) }}"
+                                                    alt="{{ $buku->judul }}">
+                                                </a>                                                
+                                            </div>
+                                            <div class="d-md-flex col-md-2">
+                                                <h3 class="card-title text-truncate">{{ $buku->judul }}</h3>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <h3 class="card-title text-truncate">
+                                                    {{ $buku->tanggal_peminjaman_disetujui }}</h3>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <h3 class="card-title text-truncate">
+                                                    {{ $buku->tanggal_pengembalian_peminjaman }}</h3>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <h3 class="card-title text-truncate">
+                                                    {{ $buku->denda != 0 ? $buku->denda : 'tidak denda' }}</h3>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a href="../detail/{{ $buku->slug }}" class="btn btn-success">ulas</a>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @empty
+                                    <div class="card" style="background-color: #e9ecef">
+                                        <div class="card-body p-3 d-flex text-center">
+                                            <div class="col-12 justify-content-center align-content-center" style="min-height: 200px">
+                                                <h3 class="card-title text-truncate">Tidak Ada Transaksi</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforelse
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    @empty
+                </div>
 
-                    <div class="text-white fs-5" style="width: 100%; height: 250px; align-content: center; text-align: center"><b>Tidak ada buku yang ditandai</b></div>
-
-                    @endforelse
-                        </div>
-                    </div>
-                    
-                
-              
             </div>
         </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -271,7 +287,6 @@
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script>
-
     </script>
 </body>
 

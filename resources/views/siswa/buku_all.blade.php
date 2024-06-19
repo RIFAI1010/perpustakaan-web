@@ -232,8 +232,16 @@
                                                 </div>
                                                 <div>
                                                     <p
-                                                        class="card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
+                                                        class="text-end card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
                                                         {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                                    </p>
+                                                    <p class="card-text text-truncate">
+                                                        @if ($buku->is_rating_ratarata($buku->slug) == 0.0)
+                                                            belum ada rating
+                                                        @else
+                                                            <i class="bi bi-star-fill" style="color: orange"></i>
+                                                            {{ $buku->is_rating_ratarata($buku->slug) }}
+                                                        @endif
                                                     </p>
                                                 </div>
                                             </div>

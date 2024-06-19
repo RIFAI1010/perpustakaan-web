@@ -217,6 +217,14 @@
                                             <h5>kategori: </h5>
                                             <button type="button"
                                                 class="btn btn-outline-primary mx-2">{{ $buku->category()->get()[0]->nama }}</button>
+                                                <p class="card-text text-truncate fs-4">
+                                                    @if ($buku->is_rating_ratarata($buku->slug) == 0.0)
+                                                        belum ada rating
+                                                    @else
+                                                        <i class="bi bi-star-fill" style="color: orange"></i>
+                                                        {{ $buku->is_rating_ratarata($buku->slug) }}
+                                                    @endif
+                                                </p>
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <h5 style="">Penulis:
@@ -225,7 +233,7 @@
                                             <h5>Penerbit: {{ $buku->penerbit()->get()[0]->nama ?? 'Tidak diketahui'}}
                                             </h5>
                                         </div>
-                                        <p>{{ $buku->deskripsi  }}</p>
+                                        <p>{{ $buku->deskripsi }}</p>
                                 </div>
                             </div>
                         </div>

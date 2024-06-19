@@ -43,4 +43,14 @@ class SiswaTransaksiController extends Controller
             ->get(),
         ]);
     }
+    public function selesai() {
+        $currentUser = Auth::user();
+        return view('siswa.selesai', [
+            'is_selesai' => DB::table('laporan_transaksi_peminjaman_buku')
+            ->join('bukus', 'laporan_transaksi_peminjaman_buku.buku_id', '=', 'bukus.id')
+            ->where('laporan_transaksi_peminjaman_buku.peminjam_id', $currentUser->id)
+            ->select('bukus.*', 'laporan_transaksi_peminjaman_buku.*')
+            ->get(),
+        ]);
+    }
 }

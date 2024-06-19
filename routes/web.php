@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/proses', [SiswaTransaksiController::class, 'proses']);
         Route::get('/dipinjam', [SiswaTransaksiController::class, 'dipinjam']);
         Route::get('/antrian', [SiswaTransaksiController::class, 'antrian']);
+        Route::get('/selesai', [SiswaTransaksiController::class, 'selesai']);
         Route::get('/ditandai', [SiswaMenandaiBukuController::class, 'index']);
 
         Route::post('/rating/{slug}', [SiswaDetailController::class, 'rating'])->name('rating');

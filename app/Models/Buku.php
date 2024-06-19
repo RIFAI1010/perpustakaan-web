@@ -120,6 +120,18 @@ class Buku extends Model
             ->where('user_id', $currentUser->id)
             ->exists();
     }
+    public function is_rating_ratarata(string $slug) {
+        // Mendapatkan ID buku berdasarkan slug
+        $buku = Buku::where('slug', $slug)->firstOrFail();
+    
+        // Menghitung rata-rata nilai rating untuk buku dengan ID tersebut
+        $avgRating = DB::table('user_merating_buku')
+            ->where('buku_id', $buku->id)
+            ->avg('nilai');
+    
+        // Mengembalikan nilai rata-rata rating sebagai desimal
+        return number_format($avgRating, 1, '.', '');
+    }
     
 
     // for api

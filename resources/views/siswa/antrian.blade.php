@@ -257,7 +257,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 @if ($buku->denda == 0)
-                                                <a class="btn btn-warning">Menunggu pengembalian...</a>
+                                                <a class="btn btn-warning">Menunggu pengembalian</a>
                                             @else
                                                 <a class="btn btn-warning">Menunggu denda dibayar</a>
                                                 @endif
