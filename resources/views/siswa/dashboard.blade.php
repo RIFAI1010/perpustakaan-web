@@ -119,27 +119,11 @@
                             <span class="hide-menu">Aktifitas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
+                            <a class="sidebar-link" href="./proses" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-journal"></i>
                                 </span>
                                 <span class="hide-menu-arrow-down">peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
-                                <span>
-                                    <i class="bi bi-journal-arrow-up"></i>
-                                </span>
-                                <span class="hide-menu">Pengembalian</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
-                                <span>
-                                    <i class="bi bi-star"></i>
-                                </span>
-                                <span class="hide-menu">Rating</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -261,14 +245,14 @@
                 <div class="col-md-4 mx-3 mb-2">
                     <div class="card m-0" style="max-width: 540px;">
                         <div class="row g-0">
-                            <div class="col-md-4 justify-content-center align-content-center">
+                            <div class="col-lg-4 justify-content-center align-content-center">
                                 <a href="/detail/{{ $buku->slug }}">
                                     <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img" alt="Image 1">
                                 </a>
 
 
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-lg-8">
 
                                 <div class="card-body p-3">
                                     <a href="/detail/{{ $buku->slug }}">

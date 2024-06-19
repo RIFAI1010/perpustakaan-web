@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\tesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\SiswaDetailController;
@@ -32,15 +31,6 @@ use App\Http\Controllers\DashboardLaporanPeminjamanBukuBerlangsungController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-
-
-
-
-
-
-
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -92,7 +82,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/mengantri-pengembalian/{slug}', [TransaksiController::class, 'mengantri_pengembalian']);
         Route::get('/batal/mengantri-peminjaman/{slug}', [TransaksiController::class, 'batal_antri_peminjaman']);
         
-        Route::get('/peminjaman', [SiswaTransaksiController::class, 'peminjaman']);
+        Route::get('/proses', [SiswaTransaksiController::class, 'proses']);
+        Route::get('/dipinjam', [SiswaTransaksiController::class, 'dipinjam']);
+        Route::get('/antrian', [SiswaTransaksiController::class, 'antrian']);
         Route::get('/ditandai', [SiswaMenandaiBukuController::class, 'index']);
 
         Route::get('/dashboard/buku', [SiswaDashboardController::class, 'index']);

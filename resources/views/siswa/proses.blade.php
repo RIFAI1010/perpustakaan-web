@@ -81,27 +81,11 @@
                             <span class="hide-menu">Aktifitas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./peminjaman" aria-expanded="false">
+                            <a class="sidebar-link" href="./proses" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-journal-arrow-down"></i>
                                 </span>
                                 <span class="hide-menu">peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./pengembalian" aria-expanded="false">
-                                <span>
-                                    <i class="bi bi-journal-arrow-up"></i>
-                                </span>
-                                <span class="hide-menu">Pengembalian</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./rating" aria-expanded="false">
-                                <span>
-                                    <i class="bi bi-star"></i>
-                                </span>
-                                <span class="hide-menu">Rating</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -187,19 +171,31 @@
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid" style="padding-top: 100px">
+            <div class="container-fluid min-vh-100" style="padding-top: 100px">
                 <div class="row">
                     <div class="col-12">
 
                         <div class="card-body">
                             <div class="d-sm-flex d-block align-items-center justify-content-between mb-9 gap-3">
-                                <a href="./peminjaman" type="button"
-                                    class="btn btn-primary m-1 flex-grow-1">Dipinjam</a>
-                                <a href="./pengembalian" type="button"
-                                    class="btn btn-light m-1 text-primary flex-grow-1">Kembalikan</a>
-                                <a href="./rating" type="button"
-                                    class="btn btn-light m-1 text-primary flex-grow-1">Rating</a>
-
+                                <a href="./proses" type="button" class="btn btn-primary m-1 flex-grow-1">Proses</a>
+                                <a href="./dipinjam" type="button"
+                                    class="btn btn-light text-primary m-1 flex-grow-1">Dipinjam</a>
+                                <a href="./antrian" type="button"
+                                    class="btn btn-light m-1 text-primary flex-grow-1">Antrian</a>
+                                <a href="./selesai" type="button"
+                                    class="btn btn-light m-1 text-primary flex-grow-1">Selesai</a>
+                                    @if (session('success'))                    
+                                    <div class="alert alert-success alert-dismissible fade show mb-0 position-fixed" role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>              
+                                    @endif
+                                    @if (session('failed'))
+                                    <div class="alert alert-danger alert-dismissible fade show mb-0 position-fixed" role="alert">
+                                        {{ session('failed') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    @endif
                             </div>
                         </div>
 
@@ -207,9 +203,62 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="card w-100">
+                        <div class="card">
                             <div class="card-body">
-                                
+                                <div class="card bg-transparent">
+                                    <div class="card-body py-0 px-3 d-md-flex text-center">
+                                        <div class="col-md-2">
+                                            <h5 class="fw-semibold">Buku</h5>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h5 class="fw-semibold">Judul</h5>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h5 class="fw-semibold">Tanggal Pengajuan</h5>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h5 class="fw-semibold">Aksi</h5>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div>
+                                    @forelse ($is_mengantri_peminjaman as $buku)
+                                    <div class="card" style="background-color: #e9ecef">
+                                        <div class="card-body p-3 d-md-flex text-center">
+                                            <div class="col-md-2 d-flex justify-content-center"
+                                                style="height: 180px;">
+                                                <a href="../detail/{{ $buku->slug }}">
+                                                <img class="mx-auto mh-100"
+                                                    src="{{ asset('/storage/buku/'. $buku->image) }}"
+                                                    alt="{{ $buku->judul }}">
+                                                </a>                                                
+                                            </div>
+                                            <div class="d-md-flex col-md-3">
+                                                <h3 class="card-title text-truncate">{{ $buku->judul }}</h3>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h3 class="card-title text-truncate">
+                                                    {{ $buku->tanggal_pengajuan_peminjaman }}</h3>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="btn btn-danger"
+                                                    href="/batal/mengantri-peminjaman/{{ $buku->slug }}">Batal antri</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @empty
+                                    <div class="card" style="background-color: #e9ecef">
+                                        <div class="card-body p-3 d-flex text-center">
+                                            <div class="col-12 justify-content-center align-content-center" style="min-height: 200px">
+                                                <h3 class="card-title text-truncate">Tidak Ada Transaksi</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforelse
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>

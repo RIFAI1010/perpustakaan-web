@@ -122,22 +122,22 @@ class TransaksiController extends Controller
         
         // kalo denda gak bisa
         if($tableLaporanPeminjamanBukuBerlangsung->where('peminjam_id', $currentUser->id)->where('denda', '>', 0)->get()->count() != 0){
-            return redirect()->route('dashboard')->with(['failed' => 'Anda sedang terkena denda!']);
+            return back()->with(['failed' => 'Anda sedang terkena denda!']);
         }
 
         // check apakah user sudah ada di table user_mengantri_peminjaman_buku dengan idBuku sama
         if($tableUserMengantriPeminjamanBuku->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count() > 0){
-            return redirect()->route('dashboard')->with(['failed' => 'Anda sudah mengantri!']);
+            return back()->with(['failed' => 'Anda sudah mengantri!']);
         }
 
         // check apakah user sedang meminjam buku yg sama
         if(Buku::where('slug', $slug)->where('peminjam_id', $currentUser->id)->get()->count()){
-            return redirect()->route('dashboard')->with(['failed' => 'Anda sudah meminjam buku ini!']);
+            return back()->with(['failed' => 'Anda sudah meminjam buku ini!']);
         }
 
         // check apakah user sudah ada di table laporan_peminjaman_buku_berlangsung dengan idBuku sama
         if($tableLaporanPeminjamanBukuBerlangsung->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
-            return redirect()->route('dashboard')->with(['failed' => 'Mengantri peminjaman gagal!']);
+            return back()->with(['failed' => 'Mengantri peminjaman gagal!']);
         }
 
         DB::table('user_mengantri_peminjaman_buku')->insert([
@@ -147,7 +147,7 @@ class TransaksiController extends Controller
             'created_at' => now(),
         ]);
 
-        return redirect()->route('dashboard')->with(['success' => 'Berhasil mengantri peminjaman!']);
+        return back()->with(['success' => 'Berhasil mengantri peminjaman!']);
     }
 
     public function batal_antri_peminjaman(string $slug)
@@ -161,12 +161,12 @@ class TransaksiController extends Controller
 
         // check apakah mengantri
         if($tableUserMengantriPeminjamanBuku->get()->count() == false){
-            return redirect()->route('dashboard')->with(['failed' => 'Anda tidak mengantri!']);
+            return back()->with(['failed' => 'Anda tidak mengantri!']);
         }
         
         $tableUserMengantriPeminjamanBuku->delete();
 
-        return redirect()->route('dashboard')->with(['success' => 'Berhasil membatalkan antrian!']);
+        return back()->with(['success' => 'Berhasil membatalkan antrian!']);
     }
 
     public function mengantri_pengembalian(Request $request, string $slug){
@@ -180,12 +180,12 @@ class TransaksiController extends Controller
 
         // check apakah user sudah ada di table user_mengantri_pengembalian_buku dengan idBuku sama
         if($tableUserMengantriPengembalian->where('buku_id', $buku->id)->where('peminjam_id', $currentUser->id)->get()->count()){
-            return redirect()->route('dashboard')->with(['failed' => 'Anda sudah mengantri!']);
+            return back()->with(['failed' => 'Anda sudah mengantri!']);
         }
 
         // check apakah user sudah ada di table laporan_peminjaman_buku_berlangsung dengan idBuku sama
         if($tableLaporanPeminjamanBukuBerlangsung->get()->count() == false){
-            return redirect()->route('dashboard')->with(['failed' => 'Mengantri gagal!']);
+            return back()->with(['failed' => 'Mengantri gagal!']);
         }
 
         // delete peminjam buku
@@ -215,6 +215,6 @@ class TransaksiController extends Controller
             'created_at' => now(),
         ]);
 
-        return redirect()->route('dashboard')->with(['success' => 'Berhasil mengantri pengembalian!']);
+        return back()->with(['success' => 'Berhasil mengantri pengembalian!']);
     }
 }

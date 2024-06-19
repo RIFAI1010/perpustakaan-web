@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
 
     <style>
-
-
         .bgb {
             position: fixed;
             top: 0;
@@ -82,27 +80,11 @@
                             <span class="hide-menu">Aktifitas</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="../peminjaman" aria-expanded="false">
+                            <a class="sidebar-link" href="../proses" aria-expanded="false">
                                 <span>
                                     <i class="bi bi-journal"></i>
                                 </span>
                                 <span class="hide-menu-arrow-down">peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="../peminjaman" aria-expanded="false">
-                                <span>
-                                    <i class="bi bi-journal-arrow-up"></i>
-                                </span>
-                                <span class="hide-menu">Pengembalian</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="../peminjaman" aria-expanded="false">
-                                <span>
-                                    <i class="bi bi-star"></i>
-                                </span>
-                                <span class="hide-menu">Rating</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -198,13 +180,13 @@
                         <div class="mx-3 justify-content-center align-content-center">
                             <h4 class="fw-semibold text-white mb-0">Buku</h4>
                         </div>
-                        
+
                     </div>
-                    @if (session('success'))                    
+                    @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>              
+                    </div>
                     @endif
                     @if (session('failed'))
                     <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
@@ -218,68 +200,55 @@
                 </div>
                 <div class="container mt-4">
                     <div class="row">
-                        
+
                     </div>
                 </div>
-               
-                    <div class="container">
-                        <div class="row">
-                            @forelse($bukus as $buku)
-                    <div class="col-md-4 mb-3">
-                        <div class="card m-0" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-4 justify-content-center align-content-center">
-                                    <a href="/detail/{{ $buku->slug }}">
-                                        <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"
-                                            alt="Image 1">
-                                    </a>
 
-
-                                </div>
-                                <div class="col-md-8">
-
-                                    <div class="card-body p-3">
+                <div class="container">
+                    <div class="row">
+                        @forelse($bukus as $buku)
+                        <div class="col-md-4 mb-3">
+                            <div class="card m-0" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-lg-4 justify-content-center align-content-center">
                                         <a href="/detail/{{ $buku->slug }}">
-                                            <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                                            <img src="{{ asset("storage/buku/$buku->image") }}" class="card-img"  alt="Image 1">
                                         </a>
-                                        <p class="card-text text-truncate">{{ $buku->deskripsi }}
-                                        </p>
-                                        <div class="d-sm-flex d-block align-items-center justify-content-between">
-                                            <div>
-                                                <a href="/menandai-buku/{{ $buku->slug }}"
-                                            class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
-                                            style="width: 32px; height: 32px;">
-                                            <i class="bi bi-{{ $buku->is_ditandai() ? 'heart-fill' : 'heart'}} fs-4"></i>
-
-                                        </a>
-                                            </div>
-                                            <div>
-                                                <p
-                                            class="card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
-                                            {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
-                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="card-body p-3">
+                                            <a href="/detail/{{ $buku->slug }}">
+                                                <h5 class="card-title text-truncate">{{ $buku->judul }}</h5>
+                                            </a>
+                                            <p class="card-text text-truncate">{{ $buku->deskripsi }}
+                                            </p>
+                                            <div class="d-sm-flex d-block align-items-center justify-content-between">
+                                                <div>
+                                                    <a href="/menandai-buku/{{ $buku->slug }}"
+                                                        class="d-inline-flex p-2 align-items-center justify-content-center bg-primary text-white text-decoration-none rounded-circle"
+                                                        style="width: 32px; height: 32px;">
+                                                        <i class="bi bi-{{ $buku->is_ditandai() ? 'heart-fill' : 'heart'}} fs-4"></i>
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <p
+                                                        class="card-text text-truncate  {{ $buku->status_ketersediaan ? 'text-success' : 'text-danger'}}">
+                                                        {{ $buku->status_ketersediaan ? 'Tersedia' : 'Tidak Tersedia'}}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                        
-                                        
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    @empty
-
-                    <div style="width: 100%; height: 250px; align-content: center; text-align: center"><b>Tidak ada data
-                            buku</b></div>
-
-                    @endforelse
+                        @empty
+                        <div style="width: 100%; height: 250px; align-content: center; text-align: center">
+                            <b>Tidak ada data buku</b>
                         </div>
+                        @endforelse
                     </div>
-                    
-                
-              
+                </div>
             </div>
         </div>
     </div>
