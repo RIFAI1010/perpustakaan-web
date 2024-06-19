@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('buku_id');
-            $table->unsignedDecimal('nilai', 1, 1);
+            $table->unsignedTinyInteger('nilai')->nullable(false);
             $table->longText('komen');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

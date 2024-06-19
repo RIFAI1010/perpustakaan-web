@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\SiswaDetailController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardBukuController;
 use App\Http\Controllers\DashboardDendaController;
 use App\Http\Controllers\DashboardSiswaController;
@@ -86,6 +86,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/dipinjam', [SiswaTransaksiController::class, 'dipinjam']);
         Route::get('/antrian', [SiswaTransaksiController::class, 'antrian']);
         Route::get('/ditandai', [SiswaMenandaiBukuController::class, 'index']);
+
+        Route::post('/rating/{slug}', [SiswaDetailController::class, 'rating'])->name('rating');
 
         Route::get('/dashboard/buku', [SiswaDashboardController::class, 'index']);
     });

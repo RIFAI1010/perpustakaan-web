@@ -104,7 +104,24 @@ class Buku extends Model
             ->where('user_id', $currentUser->id)
             ->exists();
     }
+
+    //sudah pernah pinjam
+    public function is_rating() {
+        $currentUser = Auth::user();
+        return DB::table('laporan_transaksi_peminjaman_buku')
+            ->where('buku_id', $this->id)
+            ->where('peminjam_id', $currentUser->id)
+            ->exists();
+    }
+    public function is_sudah_rating() {
+        $currentUser = Auth::user();
+        return DB::table('user_merating_buku')
+            ->where('buku_id', $this->id)
+            ->where('user_id', $currentUser->id)
+            ->exists();
+    }
     
+
     // for api
     public function is_mengantri_peminjaman_api()
     {
