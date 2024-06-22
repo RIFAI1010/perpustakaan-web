@@ -79,17 +79,29 @@
                         </li>
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end gap-1">
+                        {{-- <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end gap-1">
                             <a href="{{ route('register') }}"  class="btn btn-primary mx-2">Daftar</a>
                             <a href="{{ route('login') }}"  class="btn btn-outline-primary mx-2">Masuk</a>
                             
-                        </ul>
+                        </ul> --}}
                     </div>
                 </nav>
             </header>
             <!--  Header End -->
-            <div class="container-fluid justify-content-center align-content-center d-flex vh-100" style="padding-top: 100px; height: 600px">
+            <div class="container-fluid justify-content-between align-content-center d-flex vh-100" style="padding-top: 100px; height: 600px">
                 <div class="justify-content-center align-content-center" style="text-align: center">
+                    <h3 class="text-white pb-2">Peminjaman Buku</h3>
+                    <div class="row" style="width: 500px">
+                    @foreach ($buku as $buku)
+                    <div class="col-4 p-0 pb-4">
+                        <img class="mx-auto mh-100" width="130"
+                    src="{{ asset("storage/buku/$buku->image") }}" alt="{{ $buku->title }}">
+                    </div>
+                    @endforeach
+                    </div>
+                    
+                </div>
+                <div class="justify-content-center align-content-center" style="text-align: right">
                     <div><p class="text-white mb-0" style="font-size: 60px; font-weight: bold">PERPUSTAKAAN</p></div>
                     <div style="margin-bottom: 40px"><p class="text-white mb-0" style="font-size: 30px">Perpustakaan Perpustakaan</p></div>
                     <div><a href="{{ route('register') }}" class="btn btn-primary mx-2 px-4 py-2" style="font-size: 20px">Daftar</a>

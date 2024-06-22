@@ -1,4 +1,18 @@
-@include('dashboard.head')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perpustakaan</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+  </head>
+
+<body>
+  
 @extends('dashboard.body')
 @section('main')
 @if (session('success'))
@@ -37,7 +51,7 @@
     </div>
   </div>
   <div class="table-responsive">
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped" id="myTable" class="display">
       <thead class="table-light">
         <tr>
           <th scope="col">ID</th>
@@ -58,7 +72,7 @@
       <tbody class="table-group-divider">
         @forelse ($data_transaksi_peminjaman_buku as $data)
           <tr>
-            <td>{{ $data->id}}</td>
+            <td>{{ $data->judul_buku}}</td>
             <td>
               <p>{{ $data->buku_id }}</p>
             </td>
@@ -105,4 +119,18 @@
     </table>
   </div>
 @endsection
-@include('dashboard.footer')
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
+<script src="{{ asset('assets/js/app.min.js') }}"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+<script>
+  $(document).ready( function () {
+    // alert("Hello! I am an alert box!!");
+    $('#myTable').DataTable();
+
+  } );
+</script>
+</body>
+
+</html>

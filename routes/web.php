@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\beginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\SiswaDetailController;
@@ -37,9 +38,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisterController::class, 'register']);
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/', function () {
-        return view('begin');
-    })->name('begin');#
+    Route::get('/', [beginController::class, 'index'])->name('begin');#
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
